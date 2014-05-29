@@ -3,7 +3,7 @@ package supermercado;
 /*
  * Classe com a logica da simulacao passo-a-passo
  */
-public class Simulacao
+public class SimulacaoSupermercado
 {
     private static final int duracao = 200;
     private static final double probabilidadeChegada = 0.1;
@@ -14,7 +14,7 @@ public class Simulacao
     private Acumulador statComprimentosFila;
     private boolean trace; //valor indica se a simulacao ira imprimir passo-a-passo os resultados
     
-    public Simulacao(boolean t)
+    public SimulacaoSupermercado(boolean t)
     {
         fila = new QueueLinked<Cliente>();
         caixa = new Caixa();

@@ -3,11 +3,11 @@ package supermercado;
 /*
  * Programa principal da simulacao
  */
-public class SimuladorSupermercado
+public class SimuladorApp
 {
     public static void main(String[] args)
     {
-        Simulacao sim = new Simulacao(true);
+        SimulacaoSupermercado sim = new SimulacaoSupermercado(true);
         sim.simular();
         sim.imprimirResultados();
     }
