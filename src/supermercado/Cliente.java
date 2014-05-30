@@ -18,6 +18,7 @@ public class Cliente
 	    tempoAtendimento = gerador.nextInt(tempoMaxAtendimento-tempoMinAtendimento+1)+tempoMinAtendimento; //gera valores entre 5 e 20
 	}
 	
+	
 	public int getNumero()
 	{
 	    return numero;

@@ -3,7 +3,7 @@ package supermercado;
 /*
  * Classe com a logica da simulacao passo-a-passo
  */
-public class SimulacaoSupermercado
+public class SimulacaoSupermercado implements SimuladorInterface
 {
     private static final int duracao = 200;
     private static final double probabilidadeChegada = 0.1;

@@ -7,7 +7,7 @@ public class SimuladorApp
 {
     public static void main(String[] args)
     {
-        SimulacaoSupermercado sim = new SimulacaoSupermercado(true);
+        SimuladorInterface sim = new SimulacaoAutoEscola(true);
         sim.simular();
         sim.imprimirResultados();
     }
