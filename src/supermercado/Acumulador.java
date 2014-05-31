@@ -30,4 +30,9 @@ public class Acumulador {
     else
        return 0;
   }
+  
+  public double getDesvioPadrao(){
+	  //TODO
+	  return 0;
+  }
 }
