@@ -14,7 +14,9 @@ public class Caixa
 	public void atenderNovoCliente(Cliente c)
 	{
 	    clienteAtual = c;
+
 	}
+
 	
 	public Cliente dispensarClienteAtual()
 	{

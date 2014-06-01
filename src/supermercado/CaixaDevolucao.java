@@ -14,9 +14,4 @@ public class CaixaDevolucao extends Caixa {
 	         documentosClientes.pop();
 }
 	
-	
-	
-    
-	
-
 }

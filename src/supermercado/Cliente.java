@@ -6,6 +6,7 @@ public class Cliente
 {
 	private int numero; //numero do cliente
 	private int instanteChegada;
+	private int senhaCliente = 0;
 	private int tempoAtendimento; //quantidade de tempo que resta para o cliente no caixa
 	private static final Random gerador = new Random();
 	public static final int tempoMinAtendimento = 5;
@@ -15,6 +16,14 @@ public class Cliente
 	{
 	    numero = n;
 	    instanteChegada = c;
+	    tempoAtendimento = gerador.nextInt(tempoMaxAtendimento-tempoMinAtendimento+1)+tempoMinAtendimento; //gera valores entre 5 e 20
+	}
+	
+	public Cliente(int n, int c, int s)
+	{
+	    numero = n;
+	    instanteChegada = c;
+	    senhaCliente = s;
 	    tempoAtendimento = gerador.nextInt(tempoMaxAtendimento-tempoMinAtendimento+1)+tempoMinAtendimento; //gera valores entre 5 e 20
 	}
 	
@@ -37,5 +46,9 @@ public class Cliente
 	public int getTempoAtendimento()
 	{
 	    return tempoAtendimento;
+	}
+	
+	public int getSenhaCliente (Cliente c){
+		return senhaCliente;
 	}
 }

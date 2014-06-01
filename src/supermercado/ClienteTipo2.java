@@ -4,8 +4,7 @@ import java.util.Random;
 
 public class ClienteTipo2 extends Cliente{
 	
-	private static int senhaCliente;
-	private int tempoAtendimentoAE;
+	private int tempoAtendimento;
 	private Documento documentoCliente;
 	public static final int tempoMinAtendimento = 2;
 	public static final int tempoMaxAtendimento = 15;
@@ -14,16 +13,10 @@ public class ClienteTipo2 extends Cliente{
 	
 	public ClienteTipo2 (int n, int c, int s, Documento doc)
 	{
-		super(n,c);
-		senhaCliente = s;
+		super(n,c,s);
 	    documentoCliente = doc;
-	    tempoAtendimentoAE = timeGenerator.nextInt(tempoMaxAtendimento - tempoMinAtendimento +1) + tempoMinAtendimento;
+	    tempoAtendimento = timeGenerator.nextInt(tempoMaxAtendimento - tempoMinAtendimento +1) + tempoMinAtendimento;
 	     
-	}
-	
-	public int getSenhaCliente ()
-	{
-		return senhaCliente;
 	}
 	
 	public Documento getDocumento(){
@@ -31,13 +24,13 @@ public class ClienteTipo2 extends Cliente{
 	}
 	
 	
-	public int getTempoAtendimentoAE(){
-		return tempoAtendimentoAE;
+	public int getTempoAtendimento(){
+		return tempoAtendimento;
 	}
 	
 	
-	public void decrementarTempoAtendimentoAE()
+	public void decrementarTempoAtendimento()
 	{
-	    tempoAtendimentoAE--;
+	    tempoAtendimento--;
 	}
 }

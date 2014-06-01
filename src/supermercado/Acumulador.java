@@ -5,9 +5,11 @@ package supermercado;
  */
 public class Acumulador {
   private double valor;
+  private double somaValorQuadrado;
   private int contador;
   public Acumulador() {
     valor = 0;
+    somaValorQuadrado = 0;
     contador = 0;
   }
   public double getValor() {
@@ -32,7 +34,9 @@ public class Acumulador {
   }
   
   public double getDesvioPadrao(){
-	  //TODO
-	  return 0;
+	  if (contador!= 0 && contador > 1);
+	  double variancia = somaValorQuadrado - (contador*(Math.pow(getMedia(),2)))/ contador - 1; 
+	  double desvioPadrao = Math.sqrt(variancia);
+	  return desvioPadrao;
   }
 }
