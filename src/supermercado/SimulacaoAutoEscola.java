@@ -181,11 +181,11 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 				+ (guiche1.getClienteAtual() != null));
 		System.out.println("Total de clientes gerados:"
 				+ geradorClientes.getQuantidadeGerada());
-		System.out.println("Tempo medio de espera:"
+		System.out.println("Tempo médio de espera:"
 				+ statTemposEsperaFila.getMedia());
-		System.out.println("Tempo medio de atendimento no guichê 1:"
+		System.out.println("Tempo médio de atendimento no guichê 1:"
 				+ statTempoAtendimentoCaixa.getMedia());
-		System.out.println("Tempo medio de atendimento no guichê 2:"
+		System.out.println("Tempo médio de atendimento no guichê 2:"
 				+ statTempoAtendimentoCaixa2.getMedia());
 		System.out.println("Numero de clientes atendidos no guichê 1: "
 				+ guiche1.getNumeroAtendidos());
