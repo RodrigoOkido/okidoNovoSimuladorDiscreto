@@ -1,39 +1,50 @@
 package supermercado;
 
+import ProgramInterfaces.QueueTAD;
+import ProgramInterfaces.SimuladorInterface;
+import ProgramInterfaces.StackTAD;
+import ProgramListTADs.QueueLinked;
+import ProgramListTADs.StackLinked;
+
 /*
  * Classe com a logica da simulacao passo-a-passo
  */
 public class SimulacaoAutoEscola implements SimuladorInterface {
-	private static final int duracao = 200;
+	
+	private static int time;
+	private static final int duracao = time;
 	private static final double probabilidadeChegada = 0.1;
 	private QueueTAD<Cliente> fila;
-	private StackTAD<Cliente> fila2;
+	private QueueTAD<Cliente> fila2;
+	private StackTAD<Documento> pilhaDocumentos;
 	private Caixa guiche1;
-	private Caixa guiche2;
-	private CaixaDevolucao guiche3;
+	private CaixaDevolucao guiche2;
 	private Documento docs;
 	private GeradorClientes geradorClientes;
 	private Acumulador statTemposEsperaFila;
 	private Acumulador statComprimentosFila;
 	private Acumulador statTempoAtendimentoCaixa;
 	private Acumulador statTempoAtendimentoCaixa2;
-	private Acumulador statTempoAtendimentoCaixa3;
 	private boolean trace; // valor indica se a simulacao ira imprimir
 							// passo-a-passo os resultados
 
 	public SimulacaoAutoEscola(boolean t) {
 		fila = new QueueLinked<Cliente>();
+		fila2 = new QueueLinked<Cliente>();
+		pilhaDocumentos = new StackLinked<Documento>();
 		guiche1 = new Caixa();
-		guiche2 = new Caixa();
-		guiche3 = new CaixaDevolucao();
+		guiche2 = new CaixaDevolucao();
 		docs = new Documento();
 		geradorClientes = new GeradorClientes(probabilidadeChegada);
 		statTemposEsperaFila = new Acumulador();
 		statComprimentosFila = new Acumulador();
 		statTempoAtendimentoCaixa = new Acumulador();
 		statTempoAtendimentoCaixa2 = new Acumulador();
-		statTempoAtendimentoCaixa3 = new Acumulador();
 		trace = t;
+	}
+
+	private static void setDuracao(int x) {
+		 time = x;
 	}
 
 	public void simular() {
@@ -82,11 +93,11 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 				}
 				
 			
-				if (guiche2.estaVazio() && !fila.isEmpty()) {
+				if (guiche2.estaVazio() && !fila2.isEmpty()) {
 					// se o caixa esta vazio, atender o primeiro cliente da fila se
 					// ele existir
 						// tirar o cliente do inicio da fila e atender no caixa
-						guiche2.atenderNovoCliente(fila.remove());
+						guiche2.atenderNovoCliente(fila2.remove());
 						statTemposEsperaFila.adicionar(tempo
 								- guiche2.getClienteAtual().getInstanteChegada());
 
@@ -116,8 +127,12 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 					if (trace) {
 						System.out.println(tempo + ": cliente "
 								+ guiche1.getClienteAtual().getNumero()
-								+ " entrega o documento e deixa o caixa.");
+								+ " entrega o documento e deixa o guichê 1. O cliente se move para a segunda fila e aguarda a devolução dos documentos necessários no guichê 2.");
+						ClienteTipo2 aux = (ClienteTipo2)guiche1.getClienteAtual();
+						pilhaDocumentos.push(aux.getDocumento());
+						fila2.add(guiche1.getClienteAtual());
 						guiche1.dispensarClienteAtual();
+						
 					}
 				}
 				
@@ -127,7 +142,7 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 					if (trace) {
 						System.out.println(tempo + ": cliente "
 								+ guiche2.getClienteAtual().getNumero()
-								+ " entrega o documento e deixa o caixa.");
+								+ " pegou o documento desejado e deixa o caixa.");
 						guiche2.dispensarClienteAtual();
 					}
 				}
@@ -155,8 +170,7 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 
 		fila = new QueueLinked<Cliente>();
 		guiche1 = new Caixa();
-		guiche2 = new Caixa();
-		guiche3 = new CaixaDevolucao();
+		guiche2 = new CaixaDevolucao();
 		docs = new Documento();
 		geradorClientes = new GeradorClientes(probabilidadeChegada);
 		statTemposEsperaFila = new Acumulador();

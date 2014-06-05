@@ -1,4 +1,4 @@
-package supermercado;
+package ProgramExceptions;
 
 public class EmptyStackException extends RuntimeException
 {

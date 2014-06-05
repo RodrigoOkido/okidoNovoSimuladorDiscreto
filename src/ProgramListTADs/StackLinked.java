@@ -1,4 +1,7 @@
-package supermercado;
+package ProgramListTADs;
+
+import ProgramExceptions.EmptyStackException;
+import ProgramInterfaces.StackTAD;
 
 public class StackLinked <E> implements StackTAD<E>{
 	

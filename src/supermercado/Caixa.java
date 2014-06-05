@@ -40,4 +40,9 @@ public class Caixa
 	{
 	    return numeroAtendidos;
 	}
+
+	public Documento getDocumentoCLiente(Cliente clienteAtual2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

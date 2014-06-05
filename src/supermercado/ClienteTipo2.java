@@ -6,8 +6,10 @@ public class ClienteTipo2 extends Cliente{
 	
 	private int tempoAtendimento;
 	private Documento documentoCliente;
-	public static final int tempoMinAtendimento = 2;
-	public static final int tempoMaxAtendimento = 15;
+	private static int min;
+	private static int max;
+	public static final int tempoMinAtendimento = min;
+	public static final int tempoMaxAtendimento = max;
 	private static final Random timeGenerator = new Random();
 
 	
@@ -21,6 +23,15 @@ public class ClienteTipo2 extends Cliente{
 	
 	public Documento getDocumento(){
 		return documentoCliente;
+	}
+	
+	
+	public static void setMaxTime (int x){
+		max = x;
+	}
+	
+	public static void setMinTime (int x){
+		min = x;
 	}
 	
 	

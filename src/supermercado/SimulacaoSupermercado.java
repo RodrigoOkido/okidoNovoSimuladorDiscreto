@@ -1,5 +1,9 @@
 package supermercado;
 
+import ProgramInterfaces.QueueTAD;
+import ProgramInterfaces.SimuladorInterface;
+import ProgramListTADs.QueueLinked;
+
 /*
  * Classe com a logica da simulacao passo-a-passo
  */

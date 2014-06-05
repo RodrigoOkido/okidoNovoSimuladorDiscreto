@@ -1,4 +1,7 @@
-package supermercado;
+package ProgramListTADs;
+
+import ProgramExceptions.EmptyQueueException;
+import ProgramInterfaces.QueueTAD;
 
 public class QueueLinked<E> implements QueueTAD<E>
 {

@@ -1,4 +1,4 @@
-package supermercado;
+package ProgramInterfaces;
 
 public interface SimuladorInterface {
 	

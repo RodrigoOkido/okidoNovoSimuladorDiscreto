@@ -1,5 +1,7 @@
 package supermercado;
 
+import ProgramInterfaces.StackTAD;
+
 public class CaixaDevolucao extends Caixa {
 	
 	StackTAD<Documento> documentosClientes;

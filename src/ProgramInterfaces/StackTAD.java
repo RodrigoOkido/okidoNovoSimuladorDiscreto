@@ -1,4 +1,6 @@
-package supermercado;
+package ProgramInterfaces;
+
+import ProgramExceptions.EmptyStackException;
 
 public interface StackTAD <E> {
 	
