@@ -35,7 +35,7 @@ public class SimuladorApp {
  
     try {
  
-	File xmlFile = new File("/Documentos/Eclipse/workspace/okidoSimuladorDiscreto/xmlFile/simulation/okidoSimulationFile.xml");
+	File xmlFile = new File("okidoSimulationFile.xml");
 	DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 	Document doc = dBuilder.parse(xmlFile);
@@ -44,10 +44,10 @@ public class SimuladorApp {
  
 	System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
  
-	NodeList nList = doc.getElementsByTagName("staff");
+	NodeList nList = doc.getElementsByTagName("Simulation");
  
 	System.out.println("----------------------------");
- 
+	
 	for (int temp = 0; temp < nList.getLength(); temp++) {
  
 		Node nNode = nList.item(temp);
@@ -59,14 +59,15 @@ public class SimuladorApp {
 			Element eElement = (Element) nNode;
 			int min = Integer.parseInt(eElement.getElementsByTagName("tempoAtendimentoMinimo").item(0).getTextContent());
 			int max = Integer.parseInt (eElement.getElementsByTagName("tempoAtendimentoMaximo").item(0).getTextContent());
-            int Fila = Integer.parseInt (eElement.getElementsByTagName("tempoAtendimentoMaximo").item(0).getTextContent());
+            int fila = Integer.parseInt (eElement.getElementsByTagName("tempoEsperaFila").item(0).getTextContent());
 			int duration = Integer.parseInt(eElement.getElementsByTagName("duracao").item(0).getTextContent());
-            
+			
 			SimuladorInterface sm = new SimulacaoAutoEscola(true);
-			sm.simular();
+	      	sm.simular(min, max, fila, duration);
 			sm.imprimirResultados();
 		}
 	}
+	
     } catch (Exception e) {
 	e.printStackTrace();
     }

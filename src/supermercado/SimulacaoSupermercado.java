@@ -9,7 +9,7 @@ import ProgramListTADs.QueueLinked;
  */
 public class SimulacaoSupermercado implements SimuladorInterface
 {
-    private static final int duracao = 200;
+	private static int duracao = 0;
     private static final double probabilidadeChegada = 0.1;
     private QueueTAD<Cliente> fila;
     private Caixa caixa;
@@ -28,8 +28,23 @@ public class SimulacaoSupermercado implements SimuladorInterface
         trace = t;
     }
     
-    public void simular()
+    
+	public void setTempoAtendimento (int x, int y){
+		ClienteTipo2.tempoMinAtendimento = x;
+		ClienteTipo2.tempoMaxAtendimento = y;
+	}
+
+	private static void setDuracao(int x) {
+		 duracao = x;
+	}
+    
+    public void simular(int x, int y, int xy, int z)
     {
+    	
+    	setDuracao(z);
+		setTempoAtendimento(x,y);
+		statTemposEsperaFila.adicionar(xy);
+		
         //realizar a simulacao por um certo numero de passos de duracao
         for(int tempo=0; tempo<duracao; tempo++)
         {

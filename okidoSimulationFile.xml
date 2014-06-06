@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Simulation>
+
+<tempoAtendimentoMinimo>2</tempoAtendimentoMinimo>
+<tempoAtendimentoMaximo>15</tempoAtendimentoMaximo>
+<tempoEsperaFila>0</tempoEsperaFila>
+<duracao>200</duracao>
+
+</Simulation>
+

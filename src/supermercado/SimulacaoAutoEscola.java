@@ -12,7 +12,7 @@ import ProgramListTADs.StackLinked;
 public class SimulacaoAutoEscola implements SimuladorInterface {
 	
 	private static int time;
-	private static final int duracao = time;
+	private static int duracao = time;
 	private static final double probabilidadeChegada = 0.1;
 	private QueueTAD<Cliente> fila;
 	private QueueTAD<Cliente> fila2;
@@ -44,18 +44,21 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 	}
 	
 	
-	public void setEspera (int x, int y){
+	public void setTempoAtendimento (int x, int y){
 		ClienteTipo2.tempoMinAtendimento = x;
 		ClienteTipo2.tempoMaxAtendimento = y;
 	}
 
 	private static void setDuracao(int x) {
-		 time = x;
+		 duracao = x;
 	}
 	
 
-	public void simular() {
+	public void simular(int x, int y, int xy, int z) {
 
+		setDuracao(z);
+		setTempoAtendimento(x,y);
+		statTemposEsperaFila.adicionar(xy);
 		
 		int senha = 1001;
 		// realizar a simulacao por um certo numero de passos de duracao
