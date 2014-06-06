@@ -8,8 +8,8 @@ public class ClienteTipo2 extends Cliente{
 	private Documento documentoCliente;
 	private static int min;
 	private static int max;
-	public static final int tempoMinAtendimento = min;
-	public static final int tempoMaxAtendimento = max;
+	public static int tempoMinAtendimento = min;
+	public static int tempoMaxAtendimento = max;
 	private static final Random timeGenerator = new Random();
 
 	

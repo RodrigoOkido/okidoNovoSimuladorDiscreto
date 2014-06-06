@@ -1,5 +1,7 @@
 package ProgramInterfaces;
 
+import supermercado.Acumulador;
+
 public interface SimuladorInterface {
 	
 	public void simular();

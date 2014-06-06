@@ -42,12 +42,21 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 		statTempoAtendimentoCaixa2 = new Acumulador();
 		trace = t;
 	}
+	
+	
+	public void setEspera (int x, int y){
+		ClienteTipo2.tempoMinAtendimento = x;
+		ClienteTipo2.tempoMaxAtendimento = y;
+	}
 
 	private static void setDuracao(int x) {
 		 time = x;
 	}
+	
 
 	public void simular() {
+
+		
 		int senha = 1001;
 		// realizar a simulacao por um certo numero de passos de duracao
 		for (int tempo = 0; tempo < duracao; tempo++) {
@@ -208,4 +217,7 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 		System.out.println("Comprimento medio da fila:"
 				+ statComprimentosFila.getMedia());
 	}
+
+
+
 }
