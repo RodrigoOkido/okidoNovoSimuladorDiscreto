@@ -1,4 +1,4 @@
-package supermercado;
+package simulator;
 
 /*
  * Classe utilitaria que realiza calculos de media aritmetica

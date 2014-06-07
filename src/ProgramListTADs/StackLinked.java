@@ -29,7 +29,6 @@ public class StackLinked <E> implements StackTAD<E>{
 
 	@Override
 	public void push(E element) {
-		// TODO Auto-generated method stub insere o item no topo da pilha 
 		Node<E> newNode = new Node<E>(element);
 		if (count == 0){
 			head = newNode;

@@ -1,6 +1,6 @@
 package ProgramInterfaces;
 
-import supermercado.Acumulador;
+import simulator.Acumulador;
 
 public interface SimuladorInterface {
 	

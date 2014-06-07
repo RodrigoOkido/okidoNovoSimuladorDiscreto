@@ -1,4 +1,4 @@
-package supermercado;
+package simulator;
 
 import ProgramInterfaces.SimuladorInterface;
 
@@ -42,7 +42,7 @@ public class SimuladorApp {
  
 	doc.getDocumentElement().normalize();
  
-	System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+	System.out.println("Begin : " + doc.getDocumentElement().getNodeName());
  
 	NodeList nList = doc.getElementsByTagName("Simulation");
  
@@ -51,8 +51,6 @@ public class SimuladorApp {
 	for (int temp = 0; temp < nList.getLength(); temp++) {
  
 		Node nNode = nList.item(temp);
- 
-		System.out.println("\nCurrent Element :" + nNode.getNodeName());
  
 		if (nNode.getNodeType() == Node.ELEMENT_NODE) {
  

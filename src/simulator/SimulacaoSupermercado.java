@@ -1,4 +1,4 @@
-package supermercado;
+package simulator;
 
 import ProgramInterfaces.QueueTAD;
 import ProgramInterfaces.SimuladorInterface;
@@ -29,21 +29,21 @@ public class SimulacaoSupermercado implements SimuladorInterface
     }
     
     
-	public void setTempoAtendimento (int x, int y){
-		ClienteTipo2.tempoMinAtendimento = x;
-		ClienteTipo2.tempoMaxAtendimento = y;
+	public void setTempoAtendimento (int min, int max){
+		Cliente.tempoMinAtendimento = min;
+		Cliente.tempoMaxAtendimento = max;
 	}
 
 	private static void setDuracao(int x) {
 		 duracao = x;
 	}
     
-    public void simular(int x, int y, int xy, int z)
+    public void simular(int min, int max, int qwt, int duration)
     {
     	
-    	setDuracao(z);
-		setTempoAtendimento(x,y);
-		statTemposEsperaFila.adicionar(xy);
+    	setDuracao(duration);
+		Cliente.setMinMaxTimeFila1(min,max);
+		statTemposEsperaFila.adicionar(qwt);
 		
         //realizar a simulacao por um certo numero de passos de duracao
         for(int tempo=0; tempo<duracao; tempo++)

@@ -1,4 +1,4 @@
-package supermercado;
+package simulator;
 
 public class Caixa
 {
