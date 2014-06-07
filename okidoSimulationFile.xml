@@ -5,7 +5,7 @@
 <tempoAtendimentoMinimo>2</tempoAtendimentoMinimo>
 <tempoAtendimentoMaximo>15</tempoAtendimentoMaximo>
 <tempoEsperaFila>0</tempoEsperaFila>
-<duracao>200</duracao>
+<duracao>400</duracao>
 
 </Simulation>
 

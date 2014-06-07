@@ -92,10 +92,16 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 					guiche1.atenderNovoCliente(fila.remove());
 					statTemposEsperaFila.adicionar(tempo
 							- guiche1.getClienteAtual().getInstanteChegada());
+					statTemposEsperaFila.adicionarDobro(tempo
+							- guiche1.getClienteAtual().getInstanteChegada());
 
 					if (trace)
 						statTempoAtendimentoCaixa.adicionar(guiche1
 								.getClienteAtual().getTempoAtendimento());
+					statTempoAtendimentoCaixa.adicionarDobro(guiche1
+							.getClienteAtual().getTempoAtendimento());
+
+
 					System.out
 							.println(tempo
 									+ ": cliente "
@@ -138,10 +144,14 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 								guiche2.atenderNovoCliente(fila2.remove());
 								statTemposEsperaFila2.adicionar(tempo
 										- guiche2.getClienteAtual().getInstanteChegada());
+								statTemposEsperaFila2.adicionarDobro(tempo
+										- guiche2.getClienteAtual().getInstanteChegada());
 
 								if (trace)
 									statTempoAtendimentoCaixa2.adicionar(((ClienteTipo2) guiche2
 											.getClienteAtual()).getTempoAtendimento2());
+								    statTempoAtendimentoCaixa2.adicionarDobro(((ClienteTipo2) guiche2
+										.getClienteAtual()).getTempoAtendimento2());
 								System.out
 										.println(tempo
 												+ ": cliente "
@@ -209,33 +219,35 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 	public void imprimirResultados() {
 		System.out.println();
 		System.out.println("##### Resultados da Simulacao da Auto-Escola #####");
-		System.out.println("\n----------------------------------------------------");
-		System.out.println("**** Informações Básicas: ");
+		System.out.println("\n-----------------------------------------------------------");
+		System.out.println("******* Informações Básicas: *******");
 		System.out.println("Duracao:" + duracao);
 		System.out.println("Probabilidade de chegada de clientes:"
 				+ probabilidadeChegada);
-		System.out.println("Tempo de atendimento minimo no guichê 1:"
+		System.out.println("Tempo de atendimento minimo no guichê 1 : "
 				+ ClienteTipo2.tempoMinAtendimento);
-		System.out.println("Tempo de atendimento maximo no ghichê 1:"
+		System.out.println("Tempo de atendimento maximo no ghichê 1 : "
 				+ ClienteTipo2.tempoMaxAtendimento);
-		System.out.println("Tempo de atendimento minimo no guichê 2:"
+		System.out.println("Tempo de atendimento minimo no guichê 2 : " 
 				+ ClienteTipo2.tempoMinAtendimento2);
-		System.out.println("Tempo de atendimento maximo no ghichê 2:"
+		System.out.println("Tempo de atendimento maximo no ghichê 2 : "
 				+ ClienteTipo2.tempoMaxAtendimento2);
-		System.out.println("Numero total de clientes atendidos:"
+		System.out.println("Numero total de clientes atendidos : "
 				+ guiche1.getNumeroAtendidos());
-		System.out.println("Clientes ainda na fila:" + fila.size());
-		System.out.println("Clientes ainda na fila 2:" + fila2.size());
-		System.out.println("Cliente ainda no guiche 1:"
+		System.out.println("Clientes ainda na fila : " + fila.size());
+		System.out.println("Clientes ainda na fila 2 : " + fila2.size());
+		System.out.println("Cliente ainda no guiche 1 : "
 				+ (guiche1.getClienteAtual() != null));
-		System.out.println("Cliente ainda no guiche 2:"
+		System.out.println("Cliente ainda no guiche 2 : " 
 				+ (guiche2.getClienteAtual() != null));
-		System.out.println("Total de clientes gerados:"
+		System.out.println("Total de clientes gerados : "
 				+ geradorClientes.getQuantidadeGerada());
 		
-		System.out.println("\n**** Estatísticas");
-		System.out.println("Tempo médio de espera:"
+		System.out.println("\n******* Estatísticas *******");
+		System.out.println("Tempo médio de espera na fila 1 : "
 				+ statTemposEsperaFila.getMedia());
+		System.out.println("Tempo médio de espera na fila 2 : "
+				+ statTemposEsperaFila2.getMedia());
 		System.out.println("Tempo médio de atendimento no guichê 1 : "
 				+ statTempoAtendimentoCaixa.getMedia());
 		System.out.println("Tempo médio de atendimento no guichê 2 : "
@@ -244,9 +256,24 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 				+ guiche1.getNumeroAtendidos());
 		System.out.println("Numero de clientes atendidos no guichê 2 : "
 				+ guiche2.getNumeroAtendidos());
-		System.out.println("Comprimento medio da fila:"
+		System.out.println("Comprimento medio da fila : "
 				+ statComprimentosFila.getMedia());
-		System.out.println("\n----------------------------------------------------");
+		System.out.println("Comprimento medio da fila 2 : "
+				+ statComprimentosFila2.getMedia());
+		
+		
+		System.out.println("\n******* Estatísticas Avançadas *******");
+		System.out.println("Mediana da fila 1 : "+ statTemposEsperaFila.getMediana());
+		System.out.println("Mediana da fila 2 : "+ statTemposEsperaFila2.getMediana());
+		System.out.println("Mediana do guichê 1 : "+ statTempoAtendimentoCaixa.getMediana());
+		System.out.println("Mediana da guichê 2 : "+ statTempoAtendimentoCaixa2.getMediana());
+
+		System.out.println("Desvio Padrão da fila 1 : "+ statTemposEsperaFila.getDesvioPadrao());
+		System.out.println("Desvio Padrão da fila 2 : "+ statTemposEsperaFila2.getDesvioPadrao());
+		System.out.println("Desvio Padrão de atendimento no guichê 1 : "+ statTempoAtendimentoCaixa.getDesvioPadrao());
+		System.out.println("Desvio Padrão de atendimento no guichê 2 : "+ statTempoAtendimentoCaixa2.getDesvioPadrao());
+
+		System.out.println("\n-----------------------------------------------------------");
 	}
 
 

@@ -18,9 +18,8 @@ public class Acumulador {
   public int getContagem() {
     return contador;
   }
-  public void adicionar(double n) {
-    valor = valor + n;
-    contador++;
+  public void adicionarDobro(int n) {
+    somaValorQuadrado = somaValorQuadrado + Math.pow(n,2);
   }
   public void adicionar(int n) {
     valor = valor + n;
@@ -32,6 +31,15 @@ public class Acumulador {
     else
        return 0;
   }
+  
+  public double getMediana(){
+	  if (contador != 0){
+		  return (contador + 1) / 2;
+	  }
+		  else
+			  return 0;
+	  }
+  
   
   public double getDesvioPadrao(){
 	  if (contador!= 0 && contador > 1);
