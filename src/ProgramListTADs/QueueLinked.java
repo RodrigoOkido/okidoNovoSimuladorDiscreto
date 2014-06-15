@@ -8,10 +8,13 @@ public class QueueLinked<E> implements QueueTAD<E>
     private static final class Node<E> {
         public E element;
         public Node<E> next;
+        public Node<E> prev;
         
         public Node(E e){
             element = e;
+            prev = null;
             next = null;
+            
         }
     }
 
@@ -53,15 +56,18 @@ public class QueueLinked<E> implements QueueTAD<E>
     public void add(E element)
     {
         Node<E> n = new Node<E>(element);
-        if (head == null)
+        if (head == null){
            head = n;
-        else
+           head.prev = null;
+        }else{
            tail.next = n;
+           tail.next.prev = tail;
+        }
         tail = n;
         count++;        
     }
     
-    public E remove()
+    public E removeFromHead()
     {
         if(isEmpty())
             throw new EmptyQueueException();
@@ -74,5 +80,21 @@ public class QueueLinked<E> implements QueueTAD<E>
            tail = null;
         count--;
         return item;            
-    }    
+    }
+
+	public E removeFromTail() {
+		if(isEmpty())
+            throw new EmptyQueueException();	
+		Node<E> target = tail;
+		E item = target.element;
+		tail = target.prev;
+		target.element = null;
+		target.prev = null;
+		if (tail == null)
+			head = null;
+		count --;
+		return item;
+		
+}    
+	
 }

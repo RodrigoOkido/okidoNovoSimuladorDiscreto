@@ -8,10 +8,12 @@ public class StackLinked <E> implements StackTAD<E>{
 	 private static final class Node<E> {
 	        public E element;
 	        public Node<E> next;
+	        public Node<E> prev;
 	        
 	        public Node(E e){
 	            element = e;
 	            next = null;
+	            prev = null;
 	        }
 	    }
 
@@ -37,6 +39,7 @@ public class StackLinked <E> implements StackTAD<E>{
 		}
 		else{
 			tail.next = newNode;
+			tail.next.prev = tail;
 			tail = newNode;
 			count++;
 		}
@@ -59,16 +62,12 @@ public class StackLinked <E> implements StackTAD<E>{
 		}
 		
 		else{
-		 Node <E> aux2 = head;	
-		for (int i = 0; i < count-1; i ++){
-			aux2 = aux2.next;
-		}
-		
-		Node<E> guard = aux2.next;
-		aux2.next = null;
-		tail = aux2;
+		Node <E> aux2 = tail;			
+		E guard = aux2.element;
+		tail.prev.next = null;
+		tail = aux2.prev;
 		count --;
-		return guard.element;
+		return guard;
 		
 		}
 		// TODO Auto-generated method stub retorna e remove o item no topo da pilha

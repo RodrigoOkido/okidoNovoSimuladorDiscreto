@@ -64,7 +64,7 @@ public class SimulacaoSupermercado implements SimuladorInterface
                 if(!fila.isEmpty())
                 {
                     //tirar o cliente do inicio da fila e atender no caixa
-                    caixa.atenderNovoCliente(fila.remove());
+                    caixa.atenderNovoCliente(fila.removeFromHead());
                     statTemposEsperaFila.adicionar(tempo - caixa.getClienteAtual().getInstanteChegada());
                     if(trace)
                         System.out.println(tempo + ": cliente " + caixa.getClienteAtual().getNumero() + " chega ao caixa.");
