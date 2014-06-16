@@ -1,11 +1,37 @@
 package ProgramInterfaces;
 
-import simulator.Acumulador;
-
-public interface SimuladorInterface {
+/**
+ * Interface responsável pela criação de um simulador. Todo simulador criado 
+ * que implementar esta Interface, deve apresentar esses três métodos 
+ * implementados. 
+ * 
+ * @author Rodrigo Okido
+ * @version 1.0   
+ */
+public interface SimuladorInterface 
+{
 	
-	public void simular(int x, int y, int xy, int z);
+	/*
+	 * Método responsável pela execução da simulação. O método chave e fundamental 
+	 * onde o programa vai trabalhar.
+	 * 
+	 *  @param min Tempo minimo de atendimento de um cliente
+	 *  @param max Tempo máximo de atendimento de um cliente
+	 *  @param espF Tempo de espera na fila definido
+	 *  @param dur Tempo de duração em que a simulação será realizada
+	 */
+	public void simular(int min, int max, int espF, int dur);
+
+	
+	/*
+	 * Método responsável por limpar a simulação corrente. 
+	 */
 	public void limpar();
+	
+	
+	/*
+	 * Método responsável para exibir o resultado da simulação corrente gerada.
+	 */
 	public void imprimirResultados();
 
 }

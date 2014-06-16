@@ -48,7 +48,7 @@ public class StackLinked <E> implements StackTAD<E>{
 	}
 
 	@Override
-	public E pop() throws EmptyStackException {
+	public E pop() {
 		if (count == 0){
 			throw new EmptyStackException ();
 		}
@@ -76,7 +76,7 @@ public class StackLinked <E> implements StackTAD<E>{
 	}
 
 	@Override
-	public E top() throws EmptyStackException {
+	public E top() {
 		if (count == 0){
 			throw new EmptyStackException ();
 		}

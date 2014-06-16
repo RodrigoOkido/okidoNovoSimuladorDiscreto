@@ -67,6 +67,12 @@ public class QueueLinked<E> implements QueueTAD<E>
         count++;        
     }
     
+    /*
+     * Remove da lista a partir da "Head", isto é, o primeiro elemento ao ser adicionado,
+     * ele será o primeiro a ser removido. 
+     * 
+     * @return retorna o elemento que foi retirado
+     */
     public E removeFromHead()
     {
         if(isEmpty())
