@@ -24,13 +24,13 @@ public interface SimuladorInterface
 
 	
 	/*
-	 * Método responsável por limpar a simulação corrente. 
+	 * Método responsável por limpar e zerar toda a simulação corrente. 
 	 */
 	public void limpar();
 	
 	
 	/*
-	 * Método responsável para exibir o resultado da simulação corrente gerada.
+	 * Método responsável por exibir o resultado da simulação corrente gerada.
 	 */
 	public void imprimirResultados();
 
