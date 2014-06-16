@@ -18,7 +18,7 @@ public class Acumulador {
   public int getContagem() {
     return contador;
   }
-  public void adicionarDobro(int n) {
+  public void adicionarQuadrado(int n) {
     somaValorQuadrado = somaValorQuadrado + Math.pow(n,2);
   }
   public void adicionar(int n) {

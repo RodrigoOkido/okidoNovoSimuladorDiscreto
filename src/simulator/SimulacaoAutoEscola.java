@@ -92,13 +92,13 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 					guiche1.atenderNovoCliente(fila.removeFromHead());
 					statTemposEsperaFila.adicionar(tempo
 							- guiche1.getClienteAtual().getInstanteChegada());
-					statTemposEsperaFila.adicionarDobro(tempo
+					statTemposEsperaFila.adicionarQuadrado(tempo
 							- guiche1.getClienteAtual().getInstanteChegada());
 
 					if (trace)
 						statTempoAtendimentoCaixa.adicionar(guiche1
 								.getClienteAtual().getTempoAtendimento());
-					statTempoAtendimentoCaixa.adicionarDobro(guiche1
+					statTempoAtendimentoCaixa.adicionarQuadrado(guiche1
 							.getClienteAtual().getTempoAtendimento());
 
 
@@ -144,13 +144,13 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 								guiche2.atenderNovoCliente(fila2.removeFromTail());
 								statTemposEsperaFila2.adicionar(tempo
 										- guiche2.getClienteAtual().getInstanteChegada());
-								statTemposEsperaFila2.adicionarDobro(tempo
+								statTemposEsperaFila2.adicionarQuadrado(tempo
 										- guiche2.getClienteAtual().getInstanteChegada());
 
 								if (trace)
 									statTempoAtendimentoCaixa2.adicionar(((ClienteTipo2) guiche2
 											.getClienteAtual()).getTempoAtendimento2());
-								    statTempoAtendimentoCaixa2.adicionarDobro(((ClienteTipo2) guiche2
+								    statTempoAtendimentoCaixa2.adicionarQuadrado(((ClienteTipo2) guiche2
 										.getClienteAtual()).getTempoAtendimento2());
 								System.out
 										.println(tempo
