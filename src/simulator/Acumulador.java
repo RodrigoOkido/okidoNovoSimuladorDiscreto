@@ -2,7 +2,8 @@ package simulator;
 
 /**
  * Classe utilitaria que realiza cálculos aritmeticos diversos. Esta classe
- * possuem métodos que fazem cálculos de média, mediana e desvio padrão. 
+ * possuem métodos que fazem cálculos de média, mediana e desvio padrão, e diversos
+ * outros tipos de cálculos. 
  * 
  *  @author Rodrigo Okido
  *  @version 1.0
@@ -28,6 +29,13 @@ public class Acumulador
 	 */
 	private int contador;
 
+	
+	/**
+	 * Atributo que define o tamanho de uma fila. Será usado caso seja
+	 * desejado obter o tamanho máximo que uma fila obteve durante uma 
+	 * simulação.
+	 */
+	private int tamanho = 0;
 	
 	/**
 	 * Construtor para instanciar um Acumulador. 
@@ -137,6 +145,38 @@ public class Acumulador
 		}
 		else
 			return 0;
+     }
 	
-}
+	
+	/**
+	 * Método responsável por verificar o tamanho máximo obtido na fila 
+	 * dentro da simulação. Para garantir seu uso correto, deve ser usada 
+	 * dentro de um laço e ser atualizada sempre que o laço finalizar e 
+	 * recomeçar.
+	 * 
+	 * @param a1 Recebe o tamanho atual da fila por parâmetro e vai 
+	 * comparando o parâmetro recebido com o atributo tamanho
+	 * @return Retorna o tamanho máximo da fila
+	 */
+	public int tamanhoMaximoFila (int a1){		
+		if (tamanho < a1){
+			tamanho = a1;
+		}
+		return tamanho;
+	}
+	
+	
+	/**
+	 * Método para contar o quanto tempo ficou sem gerar uma fila para o atendimento. O
+	 * tempo é calculado em segundos.
+	 * 
+	 * @param tam recebe o tamanho da fila por parâmetro e compara seu tamanho com 1
+	 */
+	public int tempoSemFila (int tam){
+		if (tam == 0){
+			contador++;
+		}
+		return contador;
+	}
+
 }

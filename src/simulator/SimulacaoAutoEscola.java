@@ -124,6 +124,9 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 	private Acumulador statTempoAtendimentoCaixa2;
 	
 	
+	private Acumulador statTempoFilaVazia1;
+	private Acumulador statTempoFilaVazia2;
+	
 	/**
 	 * Atributo que indica o passo-a-passo da simulação. 
 	 */
@@ -153,6 +156,8 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		statComprimentosFila2 = new Acumulador();
 		statTempoAtendimentoCaixa = new Acumulador();
 		statTempoAtendimentoCaixa2 = new Acumulador();
+		statTempoFilaVazia1 = new Acumulador();
+		statTempoFilaVazia2 = new Acumulador();
 		trace = t;
 	}
 	
@@ -208,6 +213,8 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 							+ " min) entra na fila - " + fila.size()
 							+ " pessoa(s)");
 			}
+			statComprimentosFila.tamanhoMaximoFila(fila.size());
+
 			// verificar se o caixa esta vazio
 			if (guiche1.estaVazio() && !fila.isEmpty()) {
 				// se o caixa esta vazio, atender o primeiro cliente da fila se
@@ -260,7 +267,8 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 								+ " min) entra na fila 2 - " + fila2.size()
 								+ " pessoa(s)");
 						guiche1.dispensarClienteAtual();
-						
+						statComprimentosFila2.tamanhoMaximoFila(fila2.size());
+
 						if (guiche2.estaVazio() && !fila2.isEmpty()) {
 							// se o caixa esta vazio, atender o primeiro cliente da fila se
 							// ele existir
@@ -320,7 +328,9 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 			}
 
 			statComprimentosFila.adicionar(fila.size());
+			statTempoFilaVazia1.tempoSemFila(fila.size());
 			statComprimentosFila2.adicionar(fila2.size());
+			statTempoFilaVazia2.tempoSemFila(fila2.size());
 		}
 	}
 
@@ -360,49 +370,68 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		System.out.println("Duracao:" + duracao);
 		System.out.println("Probabilidade de chegada de clientes:"
 				+ probabilidadeChegada);
+		System.out.println("Numero total de clientes com atendimento completo (guichê 1 + guichê 2) : "
+				+ guiche2.getNumeroAtendidos());
+		System.out.println("Total de clientes gerados : "
+				+ geradorClientes.getQuantidadeGerada());
+		
+		
+		// INFORMAÇÕES EM RELAÇÃO A FILA E GUICHÊ 1:
+		
+		System.out.println("\n******* Estatísticas Fila 1 *******");
+		System.out.println("Tempo médio de espera na fila 1 : "
+				+ statTemposEsperaFila.getMedia());
+		System.out.println("Tamanho máximo da fila 1: " +	
+				statComprimentosFila.tamanhoMaximoFila(fila.size()));
+		System.out.println("Comprimento medio da fila 1 : "
+				+ statComprimentosFila.getMedia());
+		System.out.println("Tempo total em que a fila 1 ficou vazia: "
+				+ statTempoFilaVazia1.getContagem() + " segundos");
+		System.out.println("Clientes ainda na fila 1 : " + fila.size());
+
+		
+		System.out.println("\n******* Estatísticas Guichê 1 *******");
 		System.out.println("Tempo de atendimento minimo no guichê 1 : "
 				+ ClienteTipo2.tempoMinAtendimento);
 		System.out.println("Tempo de atendimento maximo no ghichê 1 : "
 				+ ClienteTipo2.tempoMaxAtendimento);
-		System.out.println("Tempo de atendimento minimo no guichê 2 : " 
-				+ ClienteTipo2.tempoMinAtendimento2);
-		System.out.println("Tempo de atendimento maximo no ghichê 2 : "
-				+ ClienteTipo2.tempoMaxAtendimento2);
-		System.out.println("Numero total de clientes com atendimento completo (guichê 1 + guichê 2) : "
-				+ guiche2.getNumeroAtendidos());
-		System.out.println("Clientes ainda na fila : " + fila.size());
-		System.out.println("Clientes ainda na fila 2 : " + fila2.size());
-		System.out.println("Cliente ainda no guiche 1 : "
-				+ (guiche1.getClienteAtual() != null));
-		System.out.println("Cliente ainda no guiche 2 : " 
-				+ (guiche2.getClienteAtual() != null));
-		System.out.println("Total de clientes gerados : "
-				+ geradorClientes.getQuantidadeGerada());
-		
-		System.out.println("\n******* Estatísticas Guichê 1 *******");
-		System.out.println("Tempo médio de espera na fila 1 : "
-				+ statTemposEsperaFila.getMedia());
 		System.out.println("Tempo médio de atendimento no guichê 1 : "
 				+ statTempoAtendimentoCaixa.getMedia());
 		System.out.println("Numero de clientes atendidos no guichê 1 : "
 				+ guiche1.getNumeroAtendidos());
-		System.out.println("Comprimento medio da fila : "
-				+ statComprimentosFila.getMedia());
+		System.out.println("Cliente ainda no guiche 1 : "
+				+ (guiche1.getClienteAtual() != null));
+
+		
+	    // INFORMAÇÕES EM RELAÇÃO A FILA E GUICHÊ 2:	
+		
+		System.out.println("\n******* Estatísticas Fila 2 *******");
+		System.out.println("Tempo médio de espera na fila 2 : "
+				+ statTemposEsperaFila2.getMedia());
+		System.out.println("Tamanho máximo da fila 2 : " +	
+				statComprimentosFila2.tamanhoMaximoFila(fila2.size()));
+		System.out.println("Comprimento medio da fila 2 : "
+				+ statComprimentosFila2.getMedia());
+		System.out.println("Tempo total em que a fila 2 ficou vazia: "
+				+ statTempoFilaVazia2.getContagem() + " segundos");
+		System.out.println("Clientes ainda na fila 2 : " + fila2.size());
 
 		
 		System.out.println("\n******* Estatísticas Guichê 2 (Devolução) *******");
-		
-		System.out.println("Tempo médio de espera na fila 2 : "
-				+ statTemposEsperaFila2.getMedia());
+		System.out.println("Tempo de atendimento minimo no guichê 2 : " 
+				+ ClienteTipo2.tempoMinAtendimento2);
+		System.out.println("Tempo de atendimento maximo no ghichê 2 : "
+				+ ClienteTipo2.tempoMaxAtendimento2);
 		System.out.println("Tempo médio de atendimento no guichê 2 : "
 				+ statTempoAtendimentoCaixa2.getMedia());
 		System.out.println("Documentos ainda empilhados : "+pilhaDocumentos.size());	
 		System.out.println("Numero de clientes atendidos no guichê 2 : "
 				+ guiche2.getNumeroAtendidos());
-		System.out.println("Comprimento medio da fila 2 : "
-				+ statComprimentosFila2.getMedia());
+		System.out.println("Cliente ainda no guiche 2 : " 
+				+ (guiche2.getClienteAtual() != null));
 		
-		
+
+		// ESTATÍSTICAS AVANÇADAS
 		
 		System.out.println("\n******* Estatísticas Avançadas *******");
 		System.out.println("Mediana da fila 1 : "+ statTemposEsperaFila.getMediana());
