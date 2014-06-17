@@ -6,30 +6,139 @@ import ProgramInterfaces.StackTAD;
 import ProgramListTADs.QueueLinked;
 import ProgramListTADs.StackLinked;
 
-/*
- * Classe com a logica da simulacao passo-a-passo
+/**
+ * Classe com a lógica da simulacao passo-a-passo. Esta classe cria uma simulação
+ * em uma auto-escola, possui diversos atributos necessários para que se ocorra  
+ * a simulação. Inclui um caixa, um caixa de devolução de documentos, duas filas, 
+ * gerador de clientes, documentos, uma pilha e documentos e diversos variáveis da 
+ * classe Acumulador para executar diversos tipos de cálculos diferentes para exibir
+ * no relatório final os resultados da simulação (desvio padrão, média, mediana, entre
+ * outros). 
+ * 
+ * @author Rodrigo Okido
+ * @version 1.0 
  */
-public class SimulacaoAutoEscola implements SimuladorInterface {
+public class SimulacaoAutoEscola implements SimuladorInterface 
+{
 	
-	
+	/**
+	 * Atributo que define o tempo de duração de uma simulação. 
+	 */
 	private static int duracao = 0;
+	
+	
+	/**
+	 * Atributo que define a probabilidade de chegada dos clientes
+	 * dentro da simulação.
+	 */
 	private static final double probabilidadeChegada = 0.1;
+	
+	
+	/**
+	 * Atributo que define a primeira fila de clientes.
+	 */
 	private QueueTAD<Cliente> fila;
+	
+	
+	/**
+	 * Atributo que define a segunda fila de clientes.
+	 */
 	private QueueTAD<Cliente> fila2;
+	
+	
+	/**
+	 * Atributo que gera uma pilha de documentos.
+	 */
 	private StackTAD<Documento> pilhaDocumentos;
+	
+	
+	/**
+	 * Atributo para a criação de um caixa.
+	 */
 	private Caixa guiche1;
+	
+	
+	/**
+	 * Atributo para a criação de um caixa de devolução.
+	 */
 	private CaixaDevolucao guiche2;
+	
+	
+	/**
+	 * Atributo para criação de documentos.
+	 */
 	private Documento docs;
+	
+	
+	/**
+	 * Atributo para geração de clientes.
+	 */
 	private GeradorClientes geradorClientes;
+	
+	
+	/**
+	 * Atributo que será utilizado para cálculos aritméticos.
+	 * Neste caso, este acumulador calculará dados estatísticos em relação
+	 * ao tempo de espera na primeira fila.
+	 */
 	private Acumulador statTemposEsperaFila;
+	
+	
+	/**
+	 * Atributo que será utilizado para cálculos aritméticos.
+	 * Neste caso, este acumulador calculará dados estatísticos em relação
+	 * ao tempo de espera na segunda fila.
+	 */
 	private Acumulador statTemposEsperaFila2;
+	
+	
+	/**
+	 * Atributo que será utilizado para cálculos aritméticos.
+	 * Neste caso, este acumulador calculará dados estatísticos em relação
+	 * ao comprimento da primeira fila.
+	 */
 	private Acumulador statComprimentosFila;
+	
+	
+	/**
+	 * Atributo que será utilizado para cálculos aritméticos.
+	 * Neste caso, este acumulador calculará dados estatísticos em relação
+	 * ao comprimento da segunda fila.
+	 */
 	private Acumulador statComprimentosFila2;
+	
+	
+	/**
+	 * Atributo que será utilizado para cálculos aritméticos.
+	 * Neste caso, este acumulador calculará dados estatísticos em relação
+	 * ao tempo de atendimento no primeiro caixa (guichê).
+	 */
 	private Acumulador statTempoAtendimentoCaixa;
+	
+	
+	/**
+	 * Atributo que será utilizado para cálculos aritméticos.
+	 * Neste caso, este acumulador calculará dados estatísticos em relação
+	 * ao tempo de atendimento no segundo caixa (guichê).
+	 */
 	private Acumulador statTempoAtendimentoCaixa2;
+	
+	
+	/**
+	 * Atributo que indica o passo-a-passo da simulação. 
+	 */
 	private boolean trace; // valor indica se a simulacao ira imprimir
 							// passo-a-passo os resultados
 
+	
+	/**
+	 * Construtor para instanciar uma simulação de uma auto-escola. 
+	 * Instancia todos os atributos tendo apenas que definir por parâmetro
+	 * o atributo "trace". 
+	 * 
+	 * @param t Recebe por parâmetro "true" para que a simulação possa ser
+	 * executada passo-a-passo. 
+	 */
 	public SimulacaoAutoEscola(boolean t) {
 		fila = new QueueLinked<Cliente>();
 		fila2 = new QueueLinked<Cliente>();
@@ -48,15 +157,30 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 	}
 	
 	
-	public void setTempoAtendimento (int min, int max){
-		ClienteTipo2.tempoMinAtendimento = min;
-		ClienteTipo2.tempoMaxAtendimento = max;
-	}
-
+    /**
+     * Método para definir o tempo de duração da simulação.
+     * 
+     * @param x recebe por parâmetro um inteiro x para definir o tempo
+     * em que ocorrerá a simulação 
+     */
 	private static void setDuracao(int x) {
 		 duracao = x;
 	}
     
+	
+	/**
+	 * Método chave e principal para a execução do programa. É nela que toda a 
+	 * simulação ocorre. Para a simulação ocorrer, devem ser definidos quatro 
+	 * parâmetros para assim, ela ser gerada e apresentar os seus resultados.
+	 * 
+	 * @param min recebe um inteiro onde será definido o tempo de atendimento mínimo dos
+	 * clientes
+	 * @param max recebe um inteiro onde será definido o tempo de atendimento máximo dos
+	 * clientes
+	 * @param qwt recebe um inteiro onde será definido o tempo de espera na fila 
+	 * @param duration recebe um inteiro onde será definido o tempo de duração em que a
+	 * simulação irá ocorrer
+	 */
     public void simular(int min, int max, int qwt, int duration)
     {
     	
@@ -200,6 +324,11 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 		}
 	}
 
+    
+    /**
+     * Método responsável por limpar toda a simulação corrente e gerar uma nova
+     * simulação.
+     */
 	public void limpar() {
 
 		fila = new QueueLinked<Cliente>();
@@ -217,6 +346,12 @@ public class SimulacaoAutoEscola implements SimuladorInterface {
 		statTempoAtendimentoCaixa2 = new Acumulador();
 	}
 
+	
+	/**
+	 * Imprime os resultados da simulação gerada. Gera um relatório completo
+	 * contendo todas as informações básicas, estatísticas e estatística 
+	 * avançadas da simulação. 
+	 */
 	public void imprimirResultados() {
 		System.out.println();
 		System.out.println("##### Resultados da Simulacao da Auto-Escola #####");
