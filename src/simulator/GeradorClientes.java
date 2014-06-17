@@ -12,26 +12,26 @@ import java.util.Random;
 public class GeradorClientes
 {
 	
-	/*
+	/**
 	 * Atributo do tipo double para definir uma probabilidade de criação de um
 	 * cliente.
 	 */
     private double probabilidade;
     
     
-    /*
+    /**
      * Atributo para contabilizar a quantidade de clientes gerados.
      */
     private int quantidadeGerada;
     
     
-    /*
+    /**
 	 * Gerador de números aleatórios utilizando a classe Random.
 	 */
     private static final Random gerador = new Random(); //gerador de numeros aleatorios de Java
     
     
-    /*
+    /**
      * Construtor para instanciar um objeto da classe GeradorClientes
      * 
      * @param p recebe por parâmetro um double qualquer, o qual será a atribuido ao
@@ -44,7 +44,7 @@ public class GeradorClientes
     }
     
     
-    /*
+    /**
      * Método responsável pela geração de um Cliente, se o gerador de 
      * números aleatórios for menor que a probabilidade, então o cliente será
      * gerado. Adicionando assim, mais um para o atributo "quantidadeGerada" e 
@@ -65,7 +65,7 @@ public class GeradorClientes
     }
     
     
-    /*
+    /**
      * Retorna a quantidade de clientes gerada.
      * 
      * @return retorna a quantidade de clientes gerada

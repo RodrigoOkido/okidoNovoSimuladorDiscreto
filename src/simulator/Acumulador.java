@@ -10,26 +10,26 @@ package simulator;
 public class Acumulador 
 {
 	
-	/*
+	/**
 	 * Atributo para atribuir um valor x no cálculo.
 	 */
 	private double valor;
 	
 	
-	/*
+	/**
 	 * Atributo para atribuir o quadrado do do número atribuido no atributo 
 	 * valor.
 	 */
 	private double somaValorQuadrado;
 	
 	
-	/*
+	/**
 	 * Atributo para contar a quantidade de números ja adicionados.
 	 */
 	private int contador;
 
 	
-	/*
+	/**
 	 * Construtor para instanciar um Acumulador. 
 	 */
 	public Acumulador() {
@@ -39,7 +39,7 @@ public class Acumulador
 	}
 
 	
-	/*
+	/**
 	 * Retorna o numero armazenado no atributo valor.
 	 * 
 	 * @return retorna o numero armazenado no atributo valor.
@@ -49,7 +49,7 @@ public class Acumulador
 	}
 
 	
-	/*
+	/**
 	 * Retorna a quantidade de números ja adicionados em uma operação.
 	 * 
 	 * @return retorna a quantidade de números adicionados.
@@ -59,7 +59,7 @@ public class Acumulador
 	}
 
 	
-	/*
+	/**
 	 * Eleva ao quadrado algum valor adicionado por parâmetro. Este
 	 * método pode ser usado para cálculos de desvio padrão por exemplo,
 	 * onde precisamos somar todos os números disponíveis ao quadrado.
@@ -73,7 +73,7 @@ public class Acumulador
 	}
 
 	
-	/*
+	/**
 	 * Adiciona um inteiro n qualquer dentro de um "acumulador", o qual a cada vez 
 	 * que este método é chamado, ele faz a soma de todos os números adicionados.
 	 * Atualizando também o contador sempre que o método é chamado.
@@ -87,7 +87,7 @@ public class Acumulador
 	}
 
 	
-	/*
+	/**
 	 * Realiza a média aritmética pegando a soma de todos os números adicionados
 	 * dentro do acumulador divido pelo número de valores adicionados.
 	 * 
@@ -101,7 +101,7 @@ public class Acumulador
 	}
 
 	
-	/*
+	/**
 	 * Realiza o cálculo da mediana. Pega a quantidade de números incluídos no acumulador,
 	 * soma este valor por um, e divide no final por dois.
 	 * 
@@ -115,7 +115,7 @@ public class Acumulador
 	}
 
 	
-	/*
+	/**
 	 * Realiza o cálculo do desvio padrão. O desvio padrão para ser calculado, devemos 
 	 * calcular antes a variancia, composta pela soma ao quadrado de todos os números 
 	 * adicionados dentro do acumulador menos a multiplicação do número de valores 

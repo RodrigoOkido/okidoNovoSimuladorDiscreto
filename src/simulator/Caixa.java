@@ -12,21 +12,21 @@ package simulator;
 public class Caixa 
 {
 	
-	/*
+	/**
 	 * Atributo do tipo Cliente para verificar o cliente que está
 	 * atualmente no caixa.
 	 */
 	private Cliente clienteAtual; // cliente sendo atendido no caixa
 	
 	
-	/*
+	/**
 	 * Atributo para contabilizar o número de atendimentos realizados
 	 * em um caixa.
 	 */
 	private int numeroAtendidos;
 
 	
-	/*
+	/**
 	 * Construtor para instanciar um Caixa. 
 	 */
 	public Caixa() {
@@ -35,7 +35,7 @@ public class Caixa
 	}
 
 	
-	/*
+	/**
 	 * Método que realiza a função de um caixa atender um novo cliente.
 	 * 
 	 * @param c Recebe por parâmetro uma variável do tipo Cliente
@@ -46,7 +46,7 @@ public class Caixa
 	}
 
 	
-	/*
+	/**
 	 * Método que realiza a função de dispensar o cliente que estava em
 	 * atendimento no caixa.
 	 * 
@@ -61,7 +61,7 @@ public class Caixa
 	}
 
 	
-	/*
+	/**
 	 * Verica se um caixa está vazio ou não. 
 	 * 
 	 * @return retorna "true" se o caixa está vazio, e "false" caso o caixa
@@ -72,7 +72,7 @@ public class Caixa
 	}
 
 	
-	/*
+	/**
 	 * Retorna o cliente que está em atendimento no caixa.
 	 * 
 	 * @return retorna o cliente que está sendo atendido
@@ -82,7 +82,7 @@ public class Caixa
 	}
 
 	
-	/*
+	/**
 	 * Retorna o número de atendimentos realizados em um caixa.
 	 * 
 	 * @return retorna o número de atendimentos realizados

@@ -11,7 +11,7 @@ package ProgramInterfaces;
 public interface SimuladorInterface 
 {
 	
-	/*
+	/**
 	 * Método responsável pela execução da simulação. O método chave e fundamental 
 	 * onde o programa vai trabalhar.
 	 * 
@@ -23,13 +23,13 @@ public interface SimuladorInterface
 	public void simular(int min, int max, int espF, int dur);
 
 	
-	/*
+	/**
 	 * Método responsável por limpar e zerar toda a simulação corrente. 
 	 */
 	public void limpar();
 	
 	
-	/*
+	/**
 	 * Método responsável por exibir o resultado da simulação corrente gerada.
 	 */
 	public void imprimirResultados();

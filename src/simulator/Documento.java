@@ -13,25 +13,25 @@ import java.util.Random;
 public class Documento 
 {
 
-     /*
+     /**
       * Atributo do tipo String para criação de um CPF. 	
       */
 	private String CPF;
 	
 	
-	/*
+	/**
 	 * Atributo do tipo String para criação de um RG.
 	 */
 	private String RG;
 	
 	
-	/*
+	/**
 	 * Gerador de números aleatórios utilizando a classe Random.
 	 */
 	private static Random numbersGenerator = new Random();
 	
 	
-	/*
+	/**
 	 * Construtor para instanciar um Documento. O RG é feito a partir de um
 	 * laço onde vai de 0 a 10, onde a cada vez que o laço é executado ele gera
 	 * números aleatórios de 0 a 9. Tendo no final, um longo String de números de
@@ -55,7 +55,7 @@ public class Documento
 	}
 	
 	
-	/*
+	/**
 	 * Método responsável por retornar o CPF
 	 * 
 	 * @return retorna o CPF
@@ -65,7 +65,7 @@ public class Documento
 	}
 	
 	
-	/*
+	/**
 	 * Método responsáel por retornar o RG
 	 * 
 	 * @return retorna o RG

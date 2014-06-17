@@ -11,7 +11,7 @@ public class EmptyQueueException extends RuntimeException
 	private static final long serialVersionUID = 1L;
 
 	
-	/*
+	/**
 	 * Construtor para criação de uma exceção de uma Fila
 	 */
 	public EmptyQueueException()

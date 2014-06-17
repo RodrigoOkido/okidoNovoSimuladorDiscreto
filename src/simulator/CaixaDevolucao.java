@@ -14,7 +14,7 @@ import ProgramInterfaces.StackTAD;
  */
 public class CaixaDevolucao extends Caixa {
 
-	/*
+	/**
 	 * Construtor para a instanciar um objeto "CaixaDevolucao".  
 	 */
 	public CaixaDevolucao() {
@@ -22,7 +22,7 @@ public class CaixaDevolucao extends Caixa {
 	}
     
 	
-	/*
+	/**
 	 * Método responsável por fazer a entrega de documentos ao cliente.
 	 * 
 	 * @param doc É usado uma pilha de documentos por parâmetro, onde a 

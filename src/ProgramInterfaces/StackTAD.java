@@ -14,7 +14,7 @@ package ProgramInterfaces;
  */
 public interface StackTAD <E> {
 	
-	       /*
+	       /**
 	        * Método responsável por adicionar um elemento na pilha. 
 	        * 
 	        * @param element Adiciona um elemento de um tipo qualquer dentro da pilha
@@ -22,13 +22,13 @@ public interface StackTAD <E> {
 	       public void push(E element);
 	       
 	       
-	       /*
+	       /**
 	        * Método responsável por remover o elemento do topo da pilha. 
 	        */
 	       public E pop();
 	       
 	       
-	       /*
+	       /**
 	        * Método responsável por verificar o elemento que se encontra no topo da
 	        * pilha.
 	        * 
@@ -37,7 +37,7 @@ public interface StackTAD <E> {
 	       public E top();
 	       
 	       
-	       /*
+	       /**
 	        *  Método responsável por verificar o tamanho da pilha.
 	        *  
 	        *  @return retorna o tamanho da pilha
@@ -45,7 +45,7 @@ public interface StackTAD <E> {
 	       public int size();   
 	       
 	       
-	       /*
+	       /**
 	        * Método responsável por verificar se uma pilha está vazia.
 	        * 
 	        * @return retorna "true" caso a pilha estiver com nenhum elemento dentro nela
@@ -53,7 +53,7 @@ public interface StackTAD <E> {
 	       public boolean isEmpty();    
 	       
 	       
-	       /*
+	       /**
 	        * Método responsável por limpar todo o conteúdo dentro da pilha.
 	        */
 	       public void clear();
