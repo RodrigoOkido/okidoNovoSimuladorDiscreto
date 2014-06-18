@@ -18,7 +18,7 @@ public class Acumulador
 	
 	
 	/**
-	 * Atributo para atribuir o quadrado do do número atribuido no atributo 
+	 * Atributo para atribuir o quadrado do número atribuido no atributo 
 	 * valor.
 	 */
 	private double somaValorQuadrado;
@@ -174,6 +174,25 @@ public class Acumulador
 	 */
 	public int tempoSemFila (int tam){
 		if (tam == 0){
+			contador++;
+		}
+		return contador;
+	}
+	
+	
+	/**
+	 * Método para contabilizar a quantidade de atendimentos em que não foi necessária a
+	 * espera do cliente, isto é, o atendimento ocorreu no momento em que ele chegou. É
+	 * pedido dois parâmetros, um para verificar se o caixa em que o cliente será atendido 
+	 * está vazio, e o outro para verificar se não havia fila no instante de chegada dele.
+	 * 
+	 * @param v Recebe um boolean para certificar se o caixa está vazio ou não
+	 * @param tam Recebe um tamanho para verificar se existe a possibilidade do cliente
+	 * ser atendido no momento em que chegou
+	 * @return Retorna a quantidade de atendimentos realizados sem espera
+	 */
+	public int atendimentoSemEspera (boolean v, int tam){
+		if (v == true && (tam == 0 || tam == 1)){
 			contador++;
 		}
 		return contador;

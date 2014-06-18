@@ -124,8 +124,35 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 	private Acumulador statTempoAtendimentoCaixa2;
 	
 	
+	/**
+	 * Atributo para verificar o tempo total em que a primeira fila não tinha nenhum
+	 * cliente. Ou seja, o tempo em que não existiu fila, para ser atendido no
+	 * primeiro caixa.
+	 */
 	private Acumulador statTempoFilaVazia1;
+	
+	
+	/**
+	 * Atributo para verificar o tempo total em que a segunda fila não tinha nenhum
+	 * cliente. Ou seja, o tempo em que não existiu fila, para ser atendido no
+	 * segundo caixa.
+	 */
 	private Acumulador statTempoFilaVazia2;
+	
+	
+	/**
+	 * Verifica a quantidade de atendimentos em que não houve espera do cliente para
+	 * ser atendido no primeiro caixa.
+	 */
+	private Acumulador statAtendimentoSemEspera1;
+	
+	
+	/**
+	 * Verifica a quantidade de atendimentos em que não houve espera do cliente para
+	 * ser atendido no segundo caixa.
+	 */
+	private Acumulador statAtendimentoSemEspera2;
+	
 	
 	/**
 	 * Atributo que indica o passo-a-passo da simulação. 
@@ -158,6 +185,8 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		statTempoAtendimentoCaixa2 = new Acumulador();
 		statTempoFilaVazia1 = new Acumulador();
 		statTempoFilaVazia2 = new Acumulador();
+		statAtendimentoSemEspera1 = new Acumulador();
+		statAtendimentoSemEspera2 = new Acumulador();
 		trace = t;
 	}
 	
@@ -217,6 +246,8 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 
 			// verificar se o caixa esta vazio
 			if (guiche1.estaVazio() && !fila.isEmpty()) {
+				statAtendimentoSemEspera1.atendimentoSemEspera(guiche1.estaVazio(), fila.size());
+
 				// se o caixa esta vazio, atender o primeiro cliente da fila se
 				// ele existir
 					// tirar o cliente do inicio da fila e atender no caixa
@@ -270,6 +301,8 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 						statComprimentosFila2.tamanhoMaximoFila(fila2.size());
 
 						if (guiche2.estaVazio() && !fila2.isEmpty()) {
+							statAtendimentoSemEspera2.atendimentoSemEspera(guiche2.estaVazio(), fila2.size());
+
 							// se o caixa esta vazio, atender o primeiro cliente da fila se
 							// ele existir
 								// tirar o cliente do fim da fila e atender no caixa
@@ -385,6 +418,9 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 				statComprimentosFila.tamanhoMaximoFila(fila.size()));
 		System.out.println("Comprimento medio da fila 1 : "
 				+ statComprimentosFila.getMedia());
+		System.out.println("Atendimentos que ocorreram sem espera: " 
+				+ statAtendimentoSemEspera1.atendimentoSemEspera(guiche1.estaVazio(), fila.size()));
+
 		System.out.println("Tempo total em que a fila 1 ficou vazia: "
 				+ statTempoFilaVazia1.getContagem() + " segundos");
 		System.out.println("Clientes ainda na fila 1 : " + fila.size());
@@ -412,6 +448,8 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 				statComprimentosFila2.tamanhoMaximoFila(fila2.size()));
 		System.out.println("Comprimento medio da fila 2 : "
 				+ statComprimentosFila2.getMedia());
+		System.out.println("Atendimentos que ocorreram sem espera: " 
+				+ statAtendimentoSemEspera2.atendimentoSemEspera(guiche2.estaVazio(), fila2.size()));
 		System.out.println("Tempo total em que a fila 2 ficou vazia: "
 				+ statTempoFilaVazia2.getContagem() + " segundos");
 		System.out.println("Clientes ainda na fila 2 : " + fila2.size());
