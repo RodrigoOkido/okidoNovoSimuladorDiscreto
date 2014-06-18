@@ -10,7 +10,7 @@ import ProgramListTADs.StackLinked;
  * Classe com a lógica da simulacao passo-a-passo. Esta classe cria uma simulação
  * em uma auto-escola, possui diversos atributos necessários para que se ocorra  
  * a simulação. Inclui um caixa, um caixa de devolução de documentos, duas filas, 
- * gerador de clientes, documentos, uma pilha e documentos e diversos variáveis da 
+ * gerador de clientes, documentos, uma pilha e documentos e diversas variáveis da 
  * classe Acumulador para executar diversos tipos de cálculos diferentes para exibir
  * no relatório final os resultados da simulação (desvio padrão, média, mediana, entre
  * outros). 
@@ -125,16 +125,16 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 	
 	
 	/**
-	 * Atributo para verificar o tempo total em que a primeira fila não tinha nenhum
-	 * cliente. Ou seja, o tempo em que não existiu fila, para ser atendido no
+	 * Atributo para verificar o tempo total em que a primeira fila não possuia nenhum
+	 * cliente. Ou seja, o tempo total em que não existiu fila, para ser atendido no
 	 * primeiro caixa.
 	 */
 	private Acumulador statTempoFilaVazia1;
 	
 	
 	/**
-	 * Atributo para verificar o tempo total em que a segunda fila não tinha nenhum
-	 * cliente. Ou seja, o tempo em que não existiu fila, para ser atendido no
+	 * Atributo para verificar o tempo total em que a segunda fila não possuia nenhum
+	 * cliente. Ou seja, o tempo total em que não existiu fila, para ser atendido no
 	 * segundo caixa.
 	 */
 	private Acumulador statTempoFilaVazia2;
@@ -203,9 +203,9 @@ public class SimulacaoAutoEscola implements SimuladorInterface
     
 	
 	/**
-	 * Método chave e principal para a execução do programa. É nela que toda a 
-	 * simulação ocorre. Para a simulação ocorrer, devem ser definidos quatro 
-	 * parâmetros para assim, ela ser gerada e apresentar os seus resultados.
+     * Método chave e principal para a execução do programa. É nela que toda a 
+	 * simulação ocorre. Para ela ocorrer, devem ser definidos quatro parâmetros 
+	 * do tipo inteiro, para assim, ela ser gerada e apresentar os seus resultados.
 	 * 
 	 * @param min recebe um inteiro onde será definido o tempo de atendimento mínimo dos
 	 * clientes
@@ -387,6 +387,10 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		statComprimentosFila2 = new Acumulador();
 		statTempoAtendimentoCaixa = new Acumulador();
 		statTempoAtendimentoCaixa2 = new Acumulador();
+		statTempoFilaVazia1 = new Acumulador();
+		statTempoFilaVazia2 = new Acumulador();
+		statAtendimentoSemEspera1 = new Acumulador();
+		statAtendimentoSemEspera2 = new Acumulador();
 	}
 
 	
@@ -397,13 +401,13 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 	 */
 	public void imprimirResultados() {
 		System.out.println();
-		System.out.println("##### Resultados da Simulacao da Auto-Escola #####");
+		System.out.println("##### Resultados da Simulação da Auto-Escola #####");
 		System.out.println("\n-----------------------------------------------------------");
 		System.out.println("******* Informações Básicas: *******");
-		System.out.println("Duracao:" + duracao);
+		System.out.println("Duração:" + duracao);
 		System.out.println("Probabilidade de chegada de clientes:"
 				+ probabilidadeChegada);
-		System.out.println("Numero total de clientes com atendimento completo (guichê 1 + guichê 2) : "
+		System.out.println("Número total de clientes com atendimento completo (guichê 1 + guichê 2) : "
 				+ guiche2.getNumeroAtendidos());
 		System.out.println("Total de clientes gerados : "
 				+ geradorClientes.getQuantidadeGerada());
@@ -416,24 +420,23 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 				+ statTemposEsperaFila.getMedia());
 		System.out.println("Tamanho máximo da fila 1: " +	
 				statComprimentosFila.tamanhoMaximoFila(fila.size()));
-		System.out.println("Comprimento medio da fila 1 : "
+		System.out.println("Comprimento médio da fila 1 : "
 				+ statComprimentosFila.getMedia());
 		System.out.println("Atendimentos que ocorreram sem espera: " 
 				+ statAtendimentoSemEspera1.atendimentoSemEspera(guiche1.estaVazio(), fila.size()));
-
 		System.out.println("Tempo total em que a fila 1 ficou vazia: "
 				+ statTempoFilaVazia1.getContagem() + " segundos");
 		System.out.println("Clientes ainda na fila 1 : " + fila.size());
 
 		
 		System.out.println("\n******* Estatísticas Guichê 1 *******");
-		System.out.println("Tempo de atendimento minimo no guichê 1 : "
+		System.out.println("Tempo de atendimento mínimo no guichê 1 : "
 				+ ClienteTipo2.tempoMinAtendimento);
-		System.out.println("Tempo de atendimento maximo no ghichê 1 : "
+		System.out.println("Tempo de atendimento máximo no ghichê 1 : "
 				+ ClienteTipo2.tempoMaxAtendimento);
 		System.out.println("Tempo médio de atendimento no guichê 1 : "
 				+ statTempoAtendimentoCaixa.getMedia());
-		System.out.println("Numero de clientes atendidos no guichê 1 : "
+		System.out.println("Número de clientes atendidos no guichê 1 : "
 				+ guiche1.getNumeroAtendidos());
 		System.out.println("Cliente ainda no guiche 1 : "
 				+ (guiche1.getClienteAtual() != null));
@@ -446,7 +449,7 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 				+ statTemposEsperaFila2.getMedia());
 		System.out.println("Tamanho máximo da fila 2 : " +	
 				statComprimentosFila2.tamanhoMaximoFila(fila2.size()));
-		System.out.println("Comprimento medio da fila 2 : "
+		System.out.println("Comprimento médio da fila 2 : "
 				+ statComprimentosFila2.getMedia());
 		System.out.println("Atendimentos que ocorreram sem espera: " 
 				+ statAtendimentoSemEspera2.atendimentoSemEspera(guiche2.estaVazio(), fila2.size()));
@@ -456,14 +459,14 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 
 		
 		System.out.println("\n******* Estatísticas Guichê 2 (Devolução) *******");
-		System.out.println("Tempo de atendimento minimo no guichê 2 : " 
+		System.out.println("Tempo de atendimento mínimo no guichê 2 : " 
 				+ ClienteTipo2.tempoMinAtendimento2);
-		System.out.println("Tempo de atendimento maximo no ghichê 2 : "
+		System.out.println("Tempo de atendimento máximo no guichê 2 : "
 				+ ClienteTipo2.tempoMaxAtendimento2);
 		System.out.println("Tempo médio de atendimento no guichê 2 : "
 				+ statTempoAtendimentoCaixa2.getMedia());
 		System.out.println("Documentos ainda empilhados : "+pilhaDocumentos.size());	
-		System.out.println("Numero de clientes atendidos no guichê 2 : "
+		System.out.println("Número de clientes atendidos no guichê 2 : "
 				+ guiche2.getNumeroAtendidos());
 		System.out.println("Cliente ainda no guiche 2 : " 
 				+ (guiche2.getClienteAtual() != null));

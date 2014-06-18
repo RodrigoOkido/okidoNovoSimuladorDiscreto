@@ -65,7 +65,7 @@ public class SimuladorApp
 							.getElementsByTagName("duracao").item(0)
 							.getTextContent());
 
-					SimuladorInterface sm = new SimulacaoAutoEscola(true);
+					SimuladorInterface sm = new SimulacaoSupermercado(true);
 					sm.simular(min, max, fila, duration);
 					sm.imprimirResultados();
 				}

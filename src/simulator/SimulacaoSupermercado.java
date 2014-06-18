@@ -4,20 +4,104 @@ import ProgramInterfaces.QueueTAD;
 import ProgramInterfaces.SimuladorInterface;
 import ProgramListTADs.QueueLinked;
 
-/*
- * Classe com a logica da simulacao passo-a-passo.
+/**
+ * Classe com a lógica da simulacao passo-a-passo. Esta classe cria uma simulação
+ * em um supermercado (simples), possui diversos atributos necessários para que se ocorra  
+ * a simulação. Inclui um caixa, uma fila, gerador de clientes e diversas variáveis da 
+ * classe Acumulador para executar diversos tipos de cálculos diferentes para exibir
+ * no relatório final os resultados da simulação (desvio padrão, média, mediana, entre
+ * outros). 
+ * 
+ * @author Rodrigo Okido
+ * @version 1.0
  */
 public class SimulacaoSupermercado implements SimuladorInterface
 {
+	
+	/**
+	 * Atributo que define o tempo de duração de uma simulação. 
+	 */
 	private static int duracao = 0;
+	
+	
+	/**
+	 * Atributo que define a probabilidade de chegada dos clientes
+	 * dentro da simulação.
+	 */
     private static final double probabilidadeChegada = 0.1;
+    
+    
+    /**
+	 * Define a fila de clientes.
+	 */
     private QueueTAD<Cliente> fila;
+    
+    
+	/**
+	 * Atributo para a criação de um caixa.
+	 */
     private Caixa caixa;
+    
+    
+    /**
+	 * Atributo para geração de clientes.
+	 */
     private GeradorClientes geradorClientes;
+    
+    
+	/**
+	 * Atributo que será utilizado para cálculos aritméticos.
+	 * Neste caso, este acumulador calculará dados estatísticos em relação
+	 * ao tempo de espera na fila.
+	 */
     private Acumulador statTemposEsperaFila;
+    
+    
+	/**
+	 * Atributo que será utilizado para cálculos aritméticos.
+	 * Neste caso, este acumulador calculará dados estatísticos em relação
+	 * ao comprimento da fila.
+	 */
     private Acumulador statComprimentosFila;
+    
+    
+    /**
+	 * Atributo que será utilizado para cálculos aritméticos.
+	 * Neste caso, este acumulador calculará dados estatísticos em relação
+	 * ao tempo de atendimento no caixa.
+	 */
+    private Acumulador statTempoAtendimentoCaixa;
+    
+    
+    /**
+	 * Atributo para verificar o tempo total em que a fila não possuia nenhum
+	 * cliente. Ou seja, o tempo total em que não existiu fila, para ser atendido no
+	 * caixa.
+	 */
+    private Acumulador statTempoFilaVazia;
+    
+    
+    /**
+	 * Verifica a quantidade de atendimentos em que não houve espera do cliente para
+	 * ser atendido no caixa.
+	 */
+    private Acumulador statAtendimentoSemEspera;
+    
+    
+	/**
+	 * Atributo que indica o passo-a-passo da simulação. 
+	 */
     private boolean trace; //valor indica se a simulacao ira imprimir passo-a-passo os resultados
     
+    
+    /**
+     * Construtor para instanciar uma simulação de um supermercado.
+	 * Instancia todos os atributos tendo apenas que definir por parâmetro
+	 * o atributo "trace". 
+	 * 
+     * @param t Recebe por parâmetro "true" para que a simulação possa ser
+	 * executada passo-a-passo.
+     */
     public SimulacaoSupermercado(boolean t)
     {
         fila = new QueueLinked<Cliente>();
@@ -25,19 +109,37 @@ public class SimulacaoSupermercado implements SimuladorInterface
         geradorClientes = new GeradorClientes(probabilidadeChegada);
         statTemposEsperaFila = new Acumulador();
         statComprimentosFila = new Acumulador();
+    	statTempoAtendimentoCaixa = new Acumulador();
+    	statTempoFilaVazia = new Acumulador();
+		statAtendimentoSemEspera = new Acumulador();
         trace = t;
     }
     
     
-	public void setTempoAtendimento (int min, int max){
-		Cliente.tempoMinAtendimento = min;
-		Cliente.tempoMaxAtendimento = max;
-	}
-
+    /**
+     * Método para definir o tempo de duração da simulação.
+     * 
+     * @param x recebe por parâmetro um inteiro x para definir o tempo
+     * em que ocorrerá a simulação 
+     */
 	private static void setDuracao(int x) {
 		 duracao = x;
 	}
     
+	
+	/**
+	 * Método chave e principal para a execução do programa. É nela que toda a 
+	 * simulação ocorre. Para ela ocorrer, devem ser definidos quatro parâmetros 
+	 * do tipo inteiro, para assim, ela ser gerada e apresentar os seus resultados.
+	 * 
+	 * @param min recebe um inteiro onde será definido o tempo de atendimento mínimo dos
+	 * clientes
+	 * @param max recebe um inteiro onde será definido o tempo de atendimento máximo dos
+	 * clientes
+	 * @param qwt recebe um inteiro onde será definido o tempo de espera na fila 
+	 * @param duration recebe um inteiro onde será definido o tempo de duração em que a
+	 * simulação irá ocorrer
+	 */
     public void simular(int min, int max, int qwt, int duration)
     {
     	
@@ -57,6 +159,8 @@ public class SimulacaoSupermercado implements SimuladorInterface
                 if(trace)
                     System.out.println(tempo + ": cliente " + c.getNumero() + " ("+c.getTempoAtendimento()+" min) entra na fila - " + fila.size() + " pessoa(s)");
             }
+            statComprimentosFila.tamanhoMaximoFila(fila.size());
+
             //verificar se o caixa esta vazio
             if(caixa.estaVazio())
             {
@@ -64,9 +168,16 @@ public class SimulacaoSupermercado implements SimuladorInterface
                 if(!fila.isEmpty())
                 {
                     //tirar o cliente do inicio da fila e atender no caixa
+                	statAtendimentoSemEspera.atendimentoSemEspera(caixa.estaVazio(), fila.size());
                     caixa.atenderNovoCliente(fila.removeFromHead());
                     statTemposEsperaFila.adicionar(tempo - caixa.getClienteAtual().getInstanteChegada());
+            		statTemposEsperaFila.adicionarQuadrado(tempo
+							- caixa.getClienteAtual().getInstanteChegada());
                     if(trace)
+                    	statTempoAtendimentoCaixa.adicionar(caixa
+								.getClienteAtual().getTempoAtendimento());
+                	statTempoAtendimentoCaixa.adicionarQuadrado(caixa
+							.getClienteAtual().getTempoAtendimento());
                         System.out.println(tempo + ": cliente " + caixa.getClienteAtual().getNumero() + " chega ao caixa.");
                 }
             }
@@ -84,10 +195,16 @@ public class SimulacaoSupermercado implements SimuladorInterface
                     caixa.getClienteAtual().decrementarTempoAtendimento();
                 }
             }
+            statTempoFilaVazia.tempoSemFila(fila.size());
             statComprimentosFila.adicionar(fila.size());
         }
     }
     
+    
+    /**
+     * Método responsável por limpar toda a simulação corrente e gerar uma nova
+     * simulação.
+     */
     public void limpar()
     {
         fila = new QueueLinked<Cliente>();
@@ -95,21 +212,56 @@ public class SimulacaoSupermercado implements SimuladorInterface
         geradorClientes = new GeradorClientes(probabilidadeChegada);
         statTemposEsperaFila = new Acumulador();
         statComprimentosFila = new Acumulador();
+    	statTempoAtendimentoCaixa = new Acumulador();
+    	statTempoFilaVazia = new Acumulador();
+		statAtendimentoSemEspera = new Acumulador();
     }
     
+    
+	/**
+	 * Imprime os resultados da simulação gerada. Gera um relatório completo
+	 * contendo todas as informações básicas, estatísticas e estatística 
+	 * avançadas da simulação. 
+	 */
     public void imprimirResultados()
     {
         System.out.println();
-        System.out.println("Resultados da Simulacao");
-        System.out.println("Duracao:" + duracao);
+        System.out.println("##### Resultados da Simulação do Supermercado #####");
+		System.out.println("\n-----------------------------------------------------------");
+		System.out.println("******* Informações Básicas: *******");
+        System.out.println("Duração:" + duracao);
         System.out.println("Probabilidade de chegada de clientes:" + probabilidadeChegada);
-        System.out.println("Tempo de atendimento minimo:" + Cliente.tempoMinAtendimento);
-        System.out.println("Tempo de atendimento maximo:" + Cliente.tempoMaxAtendimento);
-        System.out.println("Cliente atendidos:" + caixa.getNumeroAtendidos());
-        System.out.println("Clientes ainda na fila:" + fila.size());
-        System.out.println("Cliente ainda no caixa:" + (caixa.getClienteAtual() != null));
+
         System.out.println("Total de clientes gerados:" + geradorClientes.getQuantidadeGerada());
-        System.out.println("Tempo medio de espera:" + statTemposEsperaFila.getMedia());
-        System.out.println("Comprimento medio da fila:" + statComprimentosFila.getMedia());
+
+        
+        System.out.println("\n******* Estatísticas Fila 1 *******");
+        System.out.println("Tempo médio de espera:" + statTemposEsperaFila.getMedia());
+		System.out.println("Tamanho máximo da fila : " +	
+				statComprimentosFila.tamanhoMaximoFila(fila.size()));
+        System.out.println("Comprimento médio da fila :" + statComprimentosFila.getMedia());
+        System.out.println("Atendimentos que ocorreram sem espera: " 
+				+ statAtendimentoSemEspera.atendimentoSemEspera(caixa.estaVazio(), fila.size()));
+		System.out.println("Tempo total em que a fila 1 ficou vazia: "
+				+ statTempoFilaVazia.getContagem() + " segundos");
+        System.out.println("Clientes ainda na fila 1 : " + fila.size());
+        
+        
+		System.out.println("\n******* Estatísticas Caixa 1 *******");
+        System.out.println("Tempo de atendimento mínimo:" + Cliente.tempoMinAtendimento);
+        System.out.println("Tempo de atendimento máximo:" + Cliente.tempoMaxAtendimento);
+		System.out.println("Tempo médio de atendimento no caixa 1 : "
+				+ statTempoAtendimentoCaixa.getMedia());
+        System.out.println("Cliente atendidos:" + caixa.getNumeroAtendidos());
+        System.out.println("Cliente ainda no caixa:" + (caixa.getClienteAtual() != null));
+        
+        
+		System.out.println("\n******* Estatísticas Avançadas *******");
+		System.out.println("Mediana da fila 1 : "+ statTemposEsperaFila.getMediana());
+		System.out.println("Mediana do caixa 1 : "+ statTempoAtendimentoCaixa.getMediana());
+		System.out.println("Desvio Padrão da fila 1 : "+ statTemposEsperaFila.getDesvioPadrao());
+		System.out.println("Desvio Padrão de atendimento no caixa 1 : "+ statTempoAtendimentoCaixa.getDesvioPadrao());
+
+		System.out.println("\n-----------------------------------------------------------");
     }
 }
