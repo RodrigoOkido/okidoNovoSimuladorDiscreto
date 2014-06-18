@@ -29,13 +29,14 @@ public class Acumulador
 	 */
 	private int contador;
 
-	
+		
 	/**
 	 * Atributo que define o tamanho de uma fila. Será usado caso seja
 	 * desejado obter o tamanho máximo que uma fila obteve durante uma 
 	 * simulação.
 	 */
-	private int tamanho = 0;
+	private int tamanhoMáximo = 0;
+	
 	
 	/**
 	 * Construtor para instanciar um Acumulador. 
@@ -113,11 +114,13 @@ public class Acumulador
 	 * Realiza o cálculo da mediana. Pega a quantidade de números incluídos no acumulador,
 	 * soma este valor por um, e divide no final por dois.
 	 * 
-	 * @return retorna o resultado da mediana, obtendo zero caso contador também for zero. 
+	 * @param min Pega um inteiro x que será correspondente ao minimo
+	 * @param max Pega um inteiro y que será correspondente ao máximo
+	 * @return Retorna o resultado da mediana, obtendo zero caso x e y também for zero. 
 	 */
-	public double getMediana() {
-		if (contador != 0) {
-			return (contador + 1) / 2;
+	public double getMediana(double min, double max) {
+		if (min > 0 & max > 0 & min < max ) {
+			return ((max - min) + 1) / 2;
 		} else
 			return 0;
 	}
@@ -147,7 +150,7 @@ public class Acumulador
 			return 0;
      }
 	
-	
+		
 	/**
 	 * Método responsável por verificar o tamanho máximo obtido na fila 
 	 * dentro da simulação. Para garantir seu uso correto, deve ser usada 
@@ -159,10 +162,10 @@ public class Acumulador
 	 * @return Retorna o tamanho máximo da fila
 	 */
 	public int tamanhoMaximoFila (int a1){		
-		if (tamanho < a1){
-			tamanho = a1;
+		if (tamanhoMáximo < a1){
+			tamanhoMáximo = a1;
 		}
-		return tamanho;
+		return tamanhoMáximo;
 	}
 	
 	
@@ -186,9 +189,11 @@ public class Acumulador
 	 * pedido dois parâmetros, um para verificar se o caixa em que o cliente será atendido 
 	 * está vazio, e o outro para verificar se não havia fila no instante de chegada dele.
 	 * 
-	 * @param v Recebe um boolean para certificar se o caixa está vazio ou não
+	 * @param v Recebe um boolean para certificar se o caixa está vazio ou não. Retornando "true" 
+	 * se estiver vazio
 	 * @param tam Recebe um tamanho para verificar se existe a possibilidade do cliente
-	 * ser atendido no momento em que chegou
+	 * ser atendido no momento em que chegou, isto é, só haverá essa possibilidade se ele
+	 * for o próximo a ser atendido e não possuir ninguém na sua frente
 	 * @return Retorna a quantidade de atendimentos realizados sem espera
 	 */
 	public int atendimentoSemEspera (boolean v, int tam){

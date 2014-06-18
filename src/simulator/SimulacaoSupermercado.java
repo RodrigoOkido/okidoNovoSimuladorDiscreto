@@ -5,8 +5,8 @@ import ProgramInterfaces.SimuladorInterface;
 import ProgramListTADs.QueueLinked;
 
 /**
- * Classe com a lógica da simulacao passo-a-passo. Esta classe cria uma simulação
- * em um supermercado (simples), possui diversos atributos necessários para que se ocorra  
+ * Classe com a lógica da simulacao passo-a-passo. Esta classe gera uma simulação
+ * de um supermercado (simples), possui diversos atributos necessários para que se ocorra  
  * a simulação. Inclui um caixa, uma fila, gerador de clientes e diversas variáveis da 
  * classe Acumulador para executar diversos tipos de cálculos diferentes para exibir
  * no relatório final os resultados da simulação (desvio padrão, média, mediana, entre
@@ -257,8 +257,12 @@ public class SimulacaoSupermercado implements SimuladorInterface
         
         
 		System.out.println("\n******* Estatísticas Avançadas *******");
-		System.out.println("Mediana da fila 1 : "+ statTemposEsperaFila.getMediana());
-		System.out.println("Mediana do caixa 1 : "+ statTempoAtendimentoCaixa.getMediana());
+		System.out.println("Tamanho mínimo obtido na fila 1 : 1");
+		System.out.println("Tamanho máximo obtido na fila 1 : "+statComprimentosFila.tamanhoMaximoFila(fila.size()));
+		System.out.println("Mediana da fila 1 : "+ statTemposEsperaFila.getMediana(1,statComprimentosFila.tamanhoMaximoFila(fila.size())));
+		System.out.println("Atendimento mínimo ocorrido no caixa 1 : 1");
+		System.out.println("Atendimento máximo ocorrido no caixa 1 : "+caixa.getNumeroAtendidos());
+		System.out.println("Mediana do atendimento no caixa 1 : "+ statTempoAtendimentoCaixa.getMediana(1,caixa.getNumeroAtendidos()));
 		System.out.println("Desvio Padrão da fila 1 : "+ statTemposEsperaFila.getDesvioPadrao());
 		System.out.println("Desvio Padrão de atendimento no caixa 1 : "+ statTempoAtendimentoCaixa.getDesvioPadrao());
 

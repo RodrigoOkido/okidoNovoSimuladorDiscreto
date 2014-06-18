@@ -7,8 +7,8 @@ import ProgramListTADs.QueueLinked;
 import ProgramListTADs.StackLinked;
 
 /**
- * Classe com a lógica da simulacao passo-a-passo. Esta classe cria uma simulação
- * em uma auto-escola, possui diversos atributos necessários para que se ocorra  
+ * Classe com a lógica da simulacao passo-a-passo. Esta classe gera uma simulação
+ * de uma auto-escola, possui diversos atributos necessários para que se ocorra  
  * a simulação. Inclui um caixa, um caixa de devolução de documentos, duas filas, 
  * gerador de clientes, documentos, uma pilha e documentos e diversas variáveis da 
  * classe Acumulador para executar diversos tipos de cálculos diferentes para exibir
@@ -475,10 +475,22 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		// ESTATÍSTICAS AVANÇADAS
 		
 		System.out.println("\n******* Estatísticas Avançadas *******");
-		System.out.println("Mediana da fila 1 : "+ statTemposEsperaFila.getMediana());
-		System.out.println("Mediana da fila 2 : "+ statTemposEsperaFila2.getMediana());
-		System.out.println("Mediana do guichê 1 : "+ statTempoAtendimentoCaixa.getMediana());
-		System.out.println("Mediana da guichê 2 : "+ statTempoAtendimentoCaixa2.getMediana());
+		System.out.println("Tamanho mínimo obtido na fila 1 : 1");
+		System.out.println("Tamanho máximo obtido na fila 1 : "+statComprimentosFila.tamanhoMaximoFila(fila.size()));
+		System.out.println("Mediana da fila 1 : "+ statTemposEsperaFila.getMediana(1,statComprimentosFila.tamanhoMaximoFila(fila.size())));
+	
+		System.out.println("Tamanho mínimo obtido na fila 2 : 1");
+		System.out.println("Tamanho máximo obtido na fila 2 : "+statComprimentosFila2.tamanhoMaximoFila(fila2.size()));
+		System.out.println("Mediana da fila 2 : "+ statTemposEsperaFila2.getMediana(1,statComprimentosFila2.tamanhoMaximoFila(fila2.size())));
+		
+		System.out.println("Atendimento mínimo ocorrido no guichê 1 : 1");
+		System.out.println("Atendimento máximo ocorrido no guichê 1 : "+guiche1.getNumeroAtendidos());
+		System.out.println("Mediana do atendimento no guichê 1 : "+ statTempoAtendimentoCaixa.getMediana(1,guiche1.getNumeroAtendidos()));
+		
+		System.out.println("Atendimento mínimo ocorrido no guichê 2 : 1");
+		System.out.println("Atendimento máximo ocorrido no guichê 2 : "+guiche2.getNumeroAtendidos());
+		System.out.println("Mediana do atendimento no guichê 2 : "+ statTempoAtendimentoCaixa2.getMediana(1,guiche2.getNumeroAtendidos()));
+		
 		System.out.println("Desvio Padrão da fila 1 : "+ statTemposEsperaFila.getDesvioPadrao());
 		System.out.println("Desvio Padrão da fila 2 : "+ statTemposEsperaFila2.getDesvioPadrao());
 		System.out.println("Desvio Padrão de atendimento no guichê 1 : "+ statTempoAtendimentoCaixa.getDesvioPadrao());
