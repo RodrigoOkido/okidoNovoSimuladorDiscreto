@@ -1,13 +1,13 @@
 package ProgramWindowsInterface;
 
 import java.awt.BorderLayout;
-
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextPane;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -40,10 +40,19 @@ import org.w3c.dom.NodeList;
 import simulator.SimulacaoAutoEscola;
 import simulator.SimulacaoSupermercado;
 import ProgramInterfaces.SimuladorInterface;
+
 import javax.swing.AbstractAction;
+
 import java.awt.event.ActionEvent;
+
 import javax.swing.Action;
 import javax.swing.JCheckBoxMenuItem;
+
+import java.awt.Scrollbar;
+import java.awt.ScrollPane;
+
+import javax.swing.JScrollBar;
+import javax.swing.JTextArea;
 
 
 /**
@@ -58,16 +67,13 @@ public class SimulatorWindows extends JFrame {
 	private final JPanel panel_1 = new JPanel();
 	private final JPanel panel_2 = new JPanel();
 	private final Action action = new SwingAction();
-	
-	private JLabel lblReportBasic;
     private JLabel lblSimulationView;
-    private JLabel lblReportAdvanced;
     private JLabel errorWarning;
 
     private JCheckBoxMenuItem aechoice;
     private JCheckBoxMenuItem schoice;
     
-    
+    private JTextArea ReportBasic,ReportAdvanced ;
     private static int min, max, fila,duration;
 
 	/**
@@ -122,7 +128,7 @@ public class SimulatorWindows extends JFrame {
 
 							SimuladorInterface sm = new SimulacaoSupermercado(true);
 							sm.simular(min, max, fila, duration);
-							sm.imprimirResultados();
+						
 						}
 					}
 				} catch (Exception e) {
@@ -138,7 +144,7 @@ public class SimulatorWindows extends JFrame {
 	public SimulatorWindows() {
 		setTitle("OkidoDiscreteSimulator 1.0 build 180614 Beta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 800, 720);
+		setBounds(100, 100, 900, 720);
 		
 		JMenuBar menuBar = new JMenuBar();
 		setJMenuBar(menuBar);
@@ -149,15 +155,22 @@ public class SimulatorWindows extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBounds(10, 343, 348, 295);
+		panel.setBounds(10, 343, 430, 295);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		lblReportBasic = new JLabel("");
-		lblReportBasic.setBounds(10, 11, 328, 285);
-		panel.add(lblReportBasic);
+		JScrollPane scrollpane = new JScrollPane(ReportBasic);
+		scrollpane.setBounds(403, 10, 17, 274);
+		panel.add(scrollpane);
+		
+		JScrollBar scrollBar_1 = new JScrollBar();
+		scrollpane.setViewportView(scrollBar_1);
+		
+	    ReportBasic = new JTextArea();
+		ReportBasic.setBounds(10, 10, 389, 274);
+		panel.add(ReportBasic);
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
-		panel_1.setBounds(10, 11, 764, 222);
+		panel_1.setBounds(10, 11, 864, 222);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -165,13 +178,13 @@ public class SimulatorWindows extends JFrame {
 		lblSimulationView.setBounds(10, 11, 528, 200);
 		panel_1.add(lblSimulationView);
 		panel_2.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel_2.setBounds(368, 343, 406, 295);
+		panel_2.setBounds(450, 343, 424, 295);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
-	    lblReportAdvanced = new JLabel("");
-		lblReportAdvanced.setBounds(10, 11, 386, 285);
-		panel_2.add(lblReportAdvanced);
+	    ReportAdvanced = new JTextArea();
+		ReportAdvanced.setBounds(10, 11, 389, 273);
+		panel_2.add(ReportAdvanced);
 		
 		
 		JLabel lblRelatorio = new JLabel("<html><b>> Report & Statistic ( Relat\u00F3rio & Estat\u00EDstica )</b>");
@@ -183,7 +196,7 @@ public class SimulatorWindows extends JFrame {
 		contentPane.add(lblResultados);
 		
 		JLabel lblAdvancedStatistic = new JLabel("<html><b>> Advanced Statistic ( Estat\u00EDstica Avan\u00E7ada )</b>");
-		lblAdvancedStatistic.setBounds(373, 318, 294, 14);
+		lblAdvancedStatistic.setBounds(450, 318, 294, 14);
 		contentPane.add(lblAdvancedStatistic);
 		
 		JLabel lblSimulation = new JLabel("<html><b><font color = \"red\">>> Simulation</font></b>");
@@ -193,11 +206,11 @@ public class SimulatorWindows extends JFrame {
 		
 		JButton btnNewButton = new JButton("Begin Simulation");
 		btnNewButton.setAction(action);
-		btnNewButton.setBounds(597, 244, 177, 23);
+		btnNewButton.setBounds(697, 244, 177, 23);
 		contentPane.add(btnNewButton);
 		
 		aechoice = new JCheckBoxMenuItem("Auto-Escola");
-		aechoice.setBounds(399, 236, 129, 22);
+		aechoice.setBounds(429, 236, 129, 22);
 		contentPane.add(aechoice);
 		
 		schoice = new JCheckBoxMenuItem("Supermercado");
@@ -223,11 +236,17 @@ public class SimulatorWindows extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Begin the simulation according with the establishment chosen by you");
 		}
 		public void actionPerformed(ActionEvent e) {
-			if (schoice.isSelected() && aechoice.isSelected()){
-				errorWarning.setText("<html><b><font color = \"red\">ITS NOT POSSIBLE TO BEGIN A SIMULATION WITH THE TWO OPTIONS MARKED!</font></b>");				
+			if (schoice.isSelected()){
+					if(aechoice.isSelected()){
+						ReportBasic.setText("");
+						ReportAdvanced.setText("");
+				errorWarning.setText("<html><b><font color = \"red\">ITS NOT POSSIBLE TO BEGIN A SIMULATION WITH THE TWO OPTIONS MARKED.</font></b>");				
+			}
 			}
 			
 			if (!schoice.isSelected() && !aechoice.isSelected()){
+				ReportBasic.setText("");
+				ReportAdvanced.setText("");
 				errorWarning.setText("<html><b><font color = \"red\">CHOOSE A ESTABLISHMENT TO BEGIN.</font></b>");				
 			}
 			
@@ -237,13 +256,20 @@ public class SimulatorWindows extends JFrame {
 				errorWarning.setText("");
 				SimuladorInterface sm = new SimulacaoSupermercado(true);
 				sm.simular(min, max, fila, duration);
+				ReportBasic.setText("");
+				ReportAdvanced.setText("");
+				ReportBasic.setText(sm.imprimirResultados());
+				ReportAdvanced.setText(sm.imprimirEstatisticasAvancadas());
 			
 			}
 			if (aechoice.isSelected()){
 				errorWarning.setText("");
 				SimuladorInterface sm = new SimulacaoAutoEscola(true);
 				sm.simular(min, max, fila, duration);
-				sm.imprimirResultados();
+				ReportBasic.setText("");
+				ReportAdvanced.setText("");
+				ReportBasic.setText(sm.imprimirResultados());
+				ReportAdvanced.setText(sm.imprimirEstatisticasAvancadas());
 			}
 			}
 		}

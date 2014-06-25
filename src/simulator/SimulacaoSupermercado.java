@@ -223,49 +223,59 @@ public class SimulacaoSupermercado implements SimuladorInterface
 	 * contendo todas as informações básicas, estatísticas e estatística 
 	 * avançadas da simulação. 
 	 */
-    public void imprimirResultados()
+    public String imprimirResultados()
     {
-        System.out.println();
-        System.out.println("##### Resultados da Simulação do Supermercado #####");
-		System.out.println("\n-----------------------------------------------------------");
-		System.out.println("******* Informações Básicas: *******");
-        System.out.println("Duração:" + duracao);
-        System.out.println("Probabilidade de chegada de clientes:" + probabilidadeChegada);
+        String x = "##### Resultados da Simulação do Supermercado #####"
+        +"\n-----------------------------------------------------------------------------------------"
+		+"\n******* Informações Básicas: *******"
+        +"\nDuração:" + duracao
+        +"\nProbabilidade de chegada de clientes:" + probabilidadeChegada
 
-        System.out.println("Total de clientes gerados:" + geradorClientes.getQuantidadeGerada());
+        +"\nTotal de clientes gerados:" + geradorClientes.getQuantidadeGerada()
 
         
-        System.out.println("\n******* Estatísticas Fila 1 *******");
-        System.out.println("Tempo médio de espera:" + statTemposEsperaFila.getMedia());
-		System.out.println("Tamanho máximo da fila : " +	
-				statComprimentosFila.tamanhoMaximoFila(fila.size()));
-        System.out.println("Comprimento médio da fila :" + statComprimentosFila.getMedia());
-        System.out.println("Atendimentos que ocorreram sem espera: " 
-				+ statAtendimentoSemEspera.atendimentoSemEspera(caixa.estaVazio(), fila.size()));
-		System.out.println("Tempo total em que a fila 1 ficou vazia: "
-				+ statTempoFilaVazia.getContagem() + " segundos");
-        System.out.println("Clientes ainda na fila 1 : " + fila.size());
+        +"\n\n******* Estatísticas Fila 1 *******"
+        +"\nTempo médio de espera:" + statTemposEsperaFila.getMedia()
+		+"\nTamanho máximo da fila : " +	
+				statComprimentosFila.tamanhoMaximoFila(fila.size())
+       +"\nComprimento médio da fila :" + statComprimentosFila.getMedia()
+      +"\nAtendimentos que ocorreram sem espera: " 
+				+ statAtendimentoSemEspera.atendimentoSemEspera(caixa.estaVazio(), fila.size())
+		+"\nTempo total em que a fila 1 ficou vazia: "
+				+ statTempoFilaVazia.getContagem() + " segundos"
+      +"\nClientes ainda na fila 1 : " + fila.size()
         
         
-		System.out.println("\n******* Estatísticas Caixa 1 *******");
-        System.out.println("Tempo de atendimento mínimo:" + Cliente.tempoMinAtendimento);
-        System.out.println("Tempo de atendimento máximo:" + Cliente.tempoMaxAtendimento);
-		System.out.println("Tempo médio de atendimento no caixa 1 : "
-				+ statTempoAtendimentoCaixa.getMedia());
-        System.out.println("Cliente atendidos:" + caixa.getNumeroAtendidos());
-        System.out.println("Cliente ainda no caixa:" + (caixa.getClienteAtual() != null));
-        
-        
-		System.out.println("\n******* Estatísticas Avançadas *******");
-		System.out.println("Tamanho mínimo obtido na fila 1 : 1");
-		System.out.println("Tamanho máximo obtido na fila 1 : "+statComprimentosFila.tamanhoMaximoFila(fila.size()));
-		System.out.println("Mediana da fila 1 : "+ statTemposEsperaFila.getMediana(1,statComprimentosFila.tamanhoMaximoFila(fila.size())));
-		System.out.println("Atendimento mínimo ocorrido no caixa 1 : 1");
-		System.out.println("Atendimento máximo ocorrido no caixa 1 : "+caixa.getNumeroAtendidos());
-		System.out.println("Mediana do atendimento no caixa 1 : "+ statTempoAtendimentoCaixa.getMediana(1,caixa.getNumeroAtendidos()));
-		System.out.println("Desvio Padrão da fila 1 : "+ statTemposEsperaFila.getDesvioPadrao());
-		System.out.println("Desvio Padrão de atendimento no caixa 1 : "+ statTempoAtendimentoCaixa.getDesvioPadrao());
+		+"\n\n******* Estatísticas Caixa 1 *******"
+        +"\nTempo de atendimento mínimo:" + Cliente.tempoMinAtendimento
+        +"\nTempo de atendimento máximo:" + Cliente.tempoMaxAtendimento
+		+"\nTempo médio de atendimento no caixa 1 : "
+				+ statTempoAtendimentoCaixa.getMedia()
+        +"\nCliente atendidos:" + caixa.getNumeroAtendidos()
+        +"\nCliente ainda no caixa:" + (caixa.getClienteAtual() != null);
+        return x;
+    }
+    
+    
+        public String imprimirEstatisticasAvancadas() {	
+        	
+        String x = "##### Estatísticas avançadas do Supermercado #####"
+        +"\n-----------------------------------------------------------------------------------------" 
+        +"\n******* Estatísticas Avançadas *******"
+		+"\nTamanho mínimo obtido na fila 1 : 1"
+		+"\nTamanho máximo obtido na fila 1 : "+statComprimentosFila.tamanhoMaximoFila(fila.size())
+		+"\nMediana da fila 1 : "+ statTemposEsperaFila.getMediana(1,statComprimentosFila.tamanhoMaximoFila(fila.size()))
+		
+		+"\n\nAtendimento mínimo ocorrido no caixa 1 : 1"
+		+"\nAtendimento máximo ocorrido no caixa 1 : "+caixa.getNumeroAtendidos()
+		+"\nMediana do atendimento no caixa 1 : "+ statTempoAtendimentoCaixa.getMediana(1,caixa.getNumeroAtendidos())
+	   
+		+"\n\nDesvio Padrão da fila 1 : "+ statTemposEsperaFila.getDesvioPadrao()
+		+"\nDesvio Padrão de atendimento no caixa 1 : "+ statTempoAtendimentoCaixa.getDesvioPadrao()
 
-		System.out.println("\n-----------------------------------------------------------");
+	    +"\n-----------------------------------------------------------------------------------------";
+    
+    return x;
+    
     }
 }

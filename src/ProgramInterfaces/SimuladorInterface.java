@@ -32,6 +32,13 @@ public interface SimuladorInterface
 	/**
 	 * Método responsável por exibir o resultado da simulação corrente gerada.
 	 */
-	public void imprimirResultados();
+	public String imprimirResultados();
+	
+	/**
+	 * Método responsável por exibir o resultados estatísticos avançados da simulação corrente gerada. 
+	 * 
+	 * @return retorna estatística avançada da simulação 
+	 */
+	public String imprimirEstatisticasAvancadas();
 
 }
