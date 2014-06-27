@@ -215,14 +215,19 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 	 * @param duration recebe um inteiro onde será definido o tempo de duração em que a
 	 * simulação irá ocorrer
 	 */
-    public void simular(int min, int max, int qwt, int duration)
+    public String simular(int min, int max, int qwt, int duration)
     {
-    	
+    	StringBuilder x1 = new StringBuilder();
     	setDuracao(duration);
 		ClienteTipo2.setMinMaxTimeFila1(1,3);
 		statTemposEsperaFila.adicionar(qwt);
 		
 		int senha = 1001;
+		
+		x1.append ("SIMULATION BEGIN : AUTO-ESCOLA");
+		x1.append ("\n----------------------------------------------------------------------------------------------------------------------------");
+		
+		
 		// realizar a simulacao por um certo numero de passos de duracao
 		for (int tempo = 0; tempo < duracao; tempo++) {
 			// verificar se um cliente chegou
@@ -236,7 +241,7 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 				senha++;
 
 				if (trace)
-					System.out.println(tempo + ": cliente " + c.getNumero()
+					x1.append("\n"+tempo + ": cliente " + c.getNumero()
 							+ " com a senha " + senha + " ("
 							+ c.getTempoAtendimento()
 							+ " min) entra na fila - " + fila.size()
@@ -264,8 +269,7 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 							.getClienteAtual().getTempoAtendimento());
 
 
-					System.out
-							.println(tempo
+					x1.append("\n"+tempo
 									+ ": cliente "
 									+ guiche1.getClienteAtual().getNumero()
 									+ " de senha "
@@ -283,7 +287,7 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 			
 				if (!guiche1.estaVazio() && guiche1.getClienteAtual().getTempoAtendimento() == 0) {
 					if (trace) {
-						System.out.println(tempo + ": cliente "
+						x1.append("\n"+tempo + ": cliente "
 								+ guiche1.getClienteAtual().getNumero()
 								+ " entrega o documento e deixa o guichê 1.");
 					
@@ -292,7 +296,7 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 						ClienteTipo2 c2 = new ClienteTipo2 (guiche1.getClienteAtual().getNumero(),guiche1.getClienteAtual().getInstanteChegada(),guiche1.getClienteAtual().getSenhaCliente((ClienteTipo2)guiche1.getClienteAtual()),aux.getDocumento());						
 						pilhaDocumentos.push(aux.getDocumento());
 						fila2.add(c2);
-						System.out.println(tempo + ": cliente " + c2.getNumero()
+						x1.append("\n"+tempo + ": cliente " + c2.getNumero()
 								+ " com a senha " + senha + " ("
 								+ c2.getTempoAtendimento2()
 								+ " min) entra na fila 2 - " + fila2.size()
@@ -317,8 +321,7 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 											.getClienteAtual()).getTempoAtendimento2());
 								    statTempoAtendimentoCaixa2.adicionarQuadrado(((ClienteTipo2) guiche2
 										.getClienteAtual()).getTempoAtendimento2());
-								System.out
-										.println(tempo
+								    x1.append("\n"+tempo
 												+ ": cliente "
 												+ guiche2.getClienteAtual().getNumero()
 												+ " de senha "
@@ -336,7 +339,7 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 				if (!guiche2.estaVazio() && ((ClienteTipo2) guiche2.getClienteAtual()).getTempoAtendimento2() == 0) {
 					if (trace) {
 						guiche2.entrega(pilhaDocumentos);
-						System.out.println(tempo + ": cliente "
+						x1.append("\n"+tempo + ": cliente "
 								+ guiche2.getClienteAtual().getNumero()
 								+ " pegou o documento desejado e deixa o caixa.");
 						guiche2.dispensarClienteAtual();
@@ -365,6 +368,9 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 			statComprimentosFila2.adicionar(fila2.size());
 			statTempoFilaVazia2.tempoSemFila(fila2.size());
 		}
+		x1.append ("\n----------------------------------------------------------------------------------------------------------------------------");
+		
+		return x1.toString();
 	}
 
     

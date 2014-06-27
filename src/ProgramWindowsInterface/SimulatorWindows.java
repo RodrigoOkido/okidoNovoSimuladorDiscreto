@@ -68,7 +68,7 @@ public class SimulatorWindows extends JFrame {
 	private final JPanel panel_1 = new JPanel();
 	private final JPanel panel_2 = new JPanel();
 	private final Action action = new SwingAction();
-    private JLabel errorWarning;
+    private JLabel errorOrMessagePopup;
 
     private JCheckBoxMenuItem aechoice;
     private JCheckBoxMenuItem schoice;
@@ -214,19 +214,20 @@ public class SimulatorWindows extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		aechoice = new JCheckBoxMenuItem("Auto-Escola");
-		aechoice.setBounds(429, 236, 129, 22);
+		aechoice.setBounds(410, 236, 129, 22);
 		contentPane.add(aechoice);
 		
 		schoice = new JCheckBoxMenuItem("Supermercado");
 		schoice.setBounds(271, 236, 129, 22);
 		contentPane.add(schoice);
+		
 		JLabel lblChooseToBegin = new JLabel("Choose to begin:");
 		lblChooseToBegin.setBounds(160, 244, 101, 14);
 		contentPane.add(lblChooseToBegin);
 		
-		errorWarning = new JLabel("");
-		errorWarning.setBounds(292, 269, 286, 23);
-		contentPane.add(errorWarning);
+		errorOrMessagePopup = new JLabel("");
+		errorOrMessagePopup.setBounds(292, 269, 286, 23);
+		contentPane.add(errorOrMessagePopup);
 		
 
 		
@@ -240,39 +241,44 @@ public class SimulatorWindows extends JFrame {
 			putValue(SHORT_DESCRIPTION, "Begin the simulation according with the establishment chosen by you");
 		}
 		public void actionPerformed(ActionEvent e) {
-			if (schoice.isSelected()){
-					if(aechoice.isSelected()){
+			if ((schoice.isSelected()) && (aechoice.isSelected()) ){
+				SimulationPage.setText("");
 						ReportBasic.setText("");
 						ReportAdvanced.setText("");
-				errorWarning.setText("<html><b><font color = \"red\">ITS NOT POSSIBLE TO BEGIN A SIMULATION WITH THE TWO OPTIONS MARKED.</font></b>");				
-			}
+				errorOrMessagePopup.setText("<html><b><font color = \"red\">JUST PICK ONE TO BEGIN A SIMULATION.</font></b>");				
+			
 			}
 			
 			if (!schoice.isSelected() && !aechoice.isSelected()){
+				SimulationPage.setText("");
 				ReportBasic.setText("");
 				ReportAdvanced.setText("");
-				errorWarning.setText("<html><b><font color = \"red\">CHOOSE A ESTABLISHMENT TO BEGIN.</font></b>");				
+				errorOrMessagePopup.setText("<html><b><font color = \"red\">CHOOSE A ESTABLISHMENT TO BEGIN.</font></b>");				
 			}
 			
 			else{
 			
 			if (schoice.isSelected()){
-				errorWarning.setText("");
+				errorOrMessagePopup.setText("<html><b><font color = \"green\">SIMULATION FINISHED!</font></b>");
 				SimuladorInterface sm = new SimulacaoSupermercado(true);
-				sm.simular(min, max, fila, duration);
+				SimulationPage.setText("");
 				ReportBasic.setText("");
 				ReportAdvanced.setText("");
+				SimulationPage.setText(sm.simular(min, max, fila, duration));
 				ReportBasic.setText(sm.imprimirResultados());
 				ReportAdvanced.setText(sm.imprimirEstatisticasAvancadas());
+				
 		
 			
 			}
 			if (aechoice.isSelected()){
-				errorWarning.setText("");
+				errorOrMessagePopup.setText("<html><b><font color = \"green\">SIMULATION FINISHED!</font></b>");
 				SimuladorInterface sm = new SimulacaoAutoEscola(true);
 				sm.simular(min, max, fila, duration);
+				SimulationPage.setText("");
 				ReportBasic.setText("");
 				ReportAdvanced.setText("");
+				SimulationPage.setText(sm.simular(min, max, fila, duration));
 				ReportBasic.setText(sm.imprimirResultados());
 				ReportAdvanced.setText(sm.imprimirEstatisticasAvancadas());
 			}

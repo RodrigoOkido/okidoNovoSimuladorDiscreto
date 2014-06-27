@@ -139,13 +139,18 @@ public class SimulacaoSupermercado implements SimuladorInterface
 	 * @param qwt recebe um inteiro onde será definido o tempo de espera na fila 
 	 * @param duration recebe um inteiro onde será definido o tempo de duração em que a
 	 * simulação irá ocorrer
+	 * 
+	 * @return retorna toda a ocorrência da simulação
 	 */
-    public void simular(int min, int max, int qwt, int duration)
+    public String simular(int min, int max, int qwt, int duration)
     {
-    	
+    	StringBuilder x1 = new StringBuilder();
     	setDuracao(duration);
 		Cliente.setMinMaxTimeFila1(min,max);
 		statTemposEsperaFila.adicionar(qwt);
+		
+		x1.append ("SIMULATION BEGIN : SUPERMERCADO");
+		x1.append ("\n----------------------------------------------------------------------------------------------------------------------------");
 		
         //realizar a simulacao por um certo numero de passos de duracao
         for(int tempo=0; tempo<duracao; tempo++)
@@ -157,7 +162,7 @@ public class SimulacaoSupermercado implements SimuladorInterface
                 Cliente c = new Cliente(geradorClientes.getQuantidadeGerada(),tempo);
                 fila.add(c);
                 if(trace)
-                    System.out.println(tempo + ": cliente " + c.getNumero() + " ("+c.getTempoAtendimento()+" min) entra na fila - " + fila.size() + " pessoa(s)");
+                   x1.append("\n"+tempo + ": cliente " + c.getNumero() + " ("+c.getTempoAtendimento()+" min) entra na fila - " + fila.size() + " pessoa(s)");
             }
             statComprimentosFila.tamanhoMaximoFila(fila.size());
 
@@ -178,7 +183,7 @@ public class SimulacaoSupermercado implements SimuladorInterface
 								.getClienteAtual().getTempoAtendimento());
                 	statTempoAtendimentoCaixa.adicionarQuadrado(caixa
 							.getClienteAtual().getTempoAtendimento());
-                        System.out.println(tempo + ": cliente " + caixa.getClienteAtual().getNumero() + " chega ao caixa.");
+                	x1.append("\n"+tempo + ": cliente " + caixa.getClienteAtual().getNumero() + " chega ao caixa.");
                 }
             }
             else
@@ -187,7 +192,7 @@ public class SimulacaoSupermercado implements SimuladorInterface
                 if(caixa.getClienteAtual().getTempoAtendimento() == 0)
                 {
                     if(trace)
-                        System.out.println(tempo + ": cliente " + caixa.getClienteAtual().getNumero() + " deixa o caixa.");
+                    	x1.append("\n"+tempo + ": cliente " + caixa.getClienteAtual().getNumero() + " deixa o caixa.");
                     caixa.dispensarClienteAtual();
                 }
                 else
@@ -198,6 +203,8 @@ public class SimulacaoSupermercado implements SimuladorInterface
             statTempoFilaVazia.tempoSemFila(fila.size());
             statComprimentosFila.adicionar(fila.size());
         }
+		x1.append ("\n----------------------------------------------------------------------------------------------------------------------------");
+        return x1.toString();
     }
     
     

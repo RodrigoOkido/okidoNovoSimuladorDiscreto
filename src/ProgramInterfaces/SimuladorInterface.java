@@ -19,8 +19,10 @@ public interface SimuladorInterface
 	 *  @param max Tempo máximo de atendimento de um cliente
 	 *  @param espF Tempo de espera na fila definido
 	 *  @param dur Tempo de duração em que a simulação será realizada
+	 *  
+	 * @return retorna toda a ocorrência da simulação
 	 */
-	public void simular(int min, int max, int espF, int dur);
+	public String simular(int min, int max, int espF, int dur);
 
 	
 	/**
