@@ -219,15 +219,17 @@ public class SimulacaoSupermercado implements SimuladorInterface
     
     
 	/**
-	 * Imprime os resultados da simulação gerada. Gera um relatório completo
+	 * Imprime os resultados da simulação gerada. Gera um relatório básico
 	 * contendo todas as informações básicas, estatísticas e estatística 
-	 * avançadas da simulação. 
+	 * da simulação. 
+	 * 
+	 * @return retorna um relatório básico da simulação
 	 */
     public String imprimirResultados()
     {
         String x = "##### Resultados da Simulação do Supermercado #####"
-        +"\n-----------------------------------------------------------------------------------------"
-		+"\n******* Informações Básicas: *******"
+    	+"\n---------------------------------------------------------------------------------------------"
+        +"\n******* Informações Básicas: *******"
         +"\nDuração:" + duracao
         +"\nProbabilidade de chegada de clientes:" + probabilidadeChegada
 
@@ -252,11 +254,18 @@ public class SimulacaoSupermercado implements SimuladorInterface
 		+"\nTempo médio de atendimento no caixa 1 : "
 				+ statTempoAtendimentoCaixa.getMedia()
         +"\nCliente atendidos:" + caixa.getNumeroAtendidos()
-        +"\nCliente ainda no caixa:" + (caixa.getClienteAtual() != null);
+        +"\nCliente ainda no caixa:" + (caixa.getClienteAtual() != null)
+		+"\n---------------------------------------------------------------------------------------------";
         return x;
     }
     
     
+       /**
+        * Método responsável por mostrar as estatísticas avançadas da simulação. Oferece
+        * maiores detalhes sobre a simulação gerada.
+        * 
+        * @return retorna um relatório avançado da simulação
+        */
         public String imprimirEstatisticasAvancadas() {	
         	
         String x = "##### Estatísticas avançadas do Supermercado #####"

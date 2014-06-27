@@ -395,9 +395,11 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 
 	
 	/**
-	 * Imprime os resultados da simulação gerada. Gera um relatório completo
+	 * Imprime os resultados da simulação gerada. Gera um relatório básico
 	 * contendo todas as informações básicas, estatísticas e estatística 
-	 * avançadas da simulação. 
+	 * da simulação. 
+	 * 
+	 * @return retorna um relatório básico da simulação
 	 */
 	public String imprimirResultados() {
 		String x = "##### Resultados da Simulação da Auto-Escola #####"
@@ -443,21 +445,21 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		
 	    // INFORMAÇÕES EM RELAÇÃO A FILA E GUICHÊ 2:	
 		
-		+("\n******* Estatísticas Fila 2 *******")
-		+("Tempo médio de espera na fila 2 : "
+		+("\n\n******* Estatísticas Fila 2 *******")
+		+("\nTempo médio de espera na fila 2 : "
 				+ statTemposEsperaFila2.getMedia())
-		+("Tamanho máximo da fila 2 : " +	
+		+("\nTamanho máximo da fila 2 : " +	
 				statComprimentosFila2.tamanhoMaximoFila(fila2.size()))
-		+("Comprimento médio da fila 2 : "
+		+("\nComprimento médio da fila 2 : "
 				+ statComprimentosFila2.getMedia())
-		+("Atendimentos que ocorreram sem espera: " 
+		+("\nAtendimentos que ocorreram sem espera: " 
 				+ statAtendimentoSemEspera2.atendimentoSemEspera(guiche2.estaVazio(), fila2.size()))
-		+("Tempo total em que a fila 2 ficou vazia: "
+		+("\nTempo total em que a fila 2 ficou vazia: "
 				+ statTempoFilaVazia2.getContagem() + " segundos")
-		+("Clientes ainda na fila 2 : " + fila2.size())
+		+("\nClientes ainda na fila 2 : " + fila2.size())
 
 		
-		+("\n******* Estatísticas Guichê 2 (Devolução) *******")
+		+("\n\n******* Estatísticas Guichê 2 (Devolução) *******")
 		+("\nTempo de atendimento mínimo no guichê 2 : " 
 				+ ClienteTipo2.tempoMinAtendimento2)
 		+("\nTempo de atendimento máximo no guichê 2 : "
@@ -468,15 +470,22 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		+("\nNúmero de clientes atendidos no guichê 2 : "
 				+ guiche2.getNumeroAtendidos())
 		+("\nCliente ainda no guiche 2 : " 
-				+ (guiche2.getClienteAtual() != null)));
+				+ (guiche2.getClienteAtual() != null)))
+		+"\n---------------------------------------------------------------------------------------------";
 		return x;
 	}
 	
         @Override
+        /**
+         * Método responsável por mostrar as estatísticas avançadas da simulação. Oferece
+         * maiores detalhes sobre a simulação gerada.
+         * 
+         * @return retorna um relatório avançado da simulação
+         */
     	public String imprimirEstatisticasAvancadas() {	
 		// ESTATÍSTICAS AVANÇADAS
 		String x ="##### Estatísticas avançadas da Auto-Escola #####"
-		+"\n-----------------------------------------------------------------------------------------" 
+		+"\n---------------------------------------------------------------------------------------------"
 		+"\n******* Estatísticas Avançadas *******"
 		+("\nTamanho mínimo obtido na fila 1 : 1")
 		+("\nTamanho máximo obtido na fila 1 : "+statComprimentosFila.tamanhoMaximoFila(fila.size()))
@@ -499,11 +508,9 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		+("\nDesvio Padrão de atendimento no guichê 1 : "+ statTempoAtendimentoCaixa.getDesvioPadrao())
 		+("\nDesvio Padrão de atendimento no guichê 2 : "+ statTempoAtendimentoCaixa2.getDesvioPadrao())
 
-		+"\n-----------------------------------------------------------------------------------------";
-		
+		+"\n---------------------------------------------------------------------------------------------";		
 		return x;
 	}
 
 	}
-
 

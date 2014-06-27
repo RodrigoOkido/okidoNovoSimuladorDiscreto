@@ -67,7 +67,8 @@ public class SimuladorApp
 
 					SimuladorInterface sm = new SimulacaoSupermercado(true);
 					sm.simular(min, max, fila, duration);
-					sm.imprimirResultados();
+					System.out.println(sm.imprimirResultados());
+					System.out.println(sm.imprimirEstatisticasAvancadas());
 				}
 			}
 

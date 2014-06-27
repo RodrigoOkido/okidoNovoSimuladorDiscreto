@@ -1,6 +1,7 @@
 package ProgramWindowsInterface;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -67,13 +68,12 @@ public class SimulatorWindows extends JFrame {
 	private final JPanel panel_1 = new JPanel();
 	private final JPanel panel_2 = new JPanel();
 	private final Action action = new SwingAction();
-    private JLabel lblSimulationView;
     private JLabel errorWarning;
 
     private JCheckBoxMenuItem aechoice;
     private JCheckBoxMenuItem schoice;
     
-    private JTextArea ReportBasic,ReportAdvanced ;
+    private JTextArea ReportBasic,ReportAdvanced, SimulationPage ;
     private static int min, max, fila,duration;
 
 	/**
@@ -142,7 +142,7 @@ public class SimulatorWindows extends JFrame {
 	 * Create the frame.
 	 */
 	public SimulatorWindows() {
-		setTitle("OkidoDiscreteSimulator 1.0 build 180614 Beta");
+		setTitle("OkidoDiscreteSimulator 1.0 build 270614 Beta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 720);
 		
@@ -159,32 +159,36 @@ public class SimulatorWindows extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JScrollPane scrollpane = new JScrollPane(ReportBasic);
-		scrollpane.setBounds(403, 10, 17, 274);
-		panel.add(scrollpane);
+		JScrollPane scrollpaneReportBasic = new JScrollPane(ReportBasic);
+		scrollpaneReportBasic.setBounds(10, 10, 410, 274);
+		scrollpaneReportBasic.setPreferredSize(new Dimension(200,200));
+		panel.add(scrollpaneReportBasic);
 		
-		JScrollBar scrollBar_1 = new JScrollBar();
-		scrollpane.setViewportView(scrollBar_1);
-		
-	    ReportBasic = new JTextArea();
-		ReportBasic.setBounds(10, 10, 389, 274);
-		panel.add(ReportBasic);
+		ReportBasic = new JTextArea();
+		scrollpaneReportBasic.setViewportView(ReportBasic);
 		panel_1.setBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null));
 		panel_1.setBounds(10, 11, 864, 222);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		lblSimulationView = new JLabel("");
-		lblSimulationView.setBounds(10, 11, 528, 200);
-		panel_1.add(lblSimulationView);
+		JScrollPane scrollPaneSimulation = new JScrollPane();
+		scrollPaneSimulation.setBounds(10, 11, 547, 200);
+		panel_1.add(scrollPaneSimulation);
+		
+		SimulationPage = new JTextArea();
+		scrollPaneSimulation.setViewportView(SimulationPage);
 		panel_2.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		panel_2.setBounds(450, 343, 424, 295);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
-	    ReportAdvanced = new JTextArea();
-		ReportAdvanced.setBounds(10, 11, 389, 273);
-		panel_2.add(ReportAdvanced);
+		JScrollPane scrollPaneReportAdvanced = new JScrollPane();
+		scrollPaneReportAdvanced.setBounds(10, 11, 404, 273);
+		panel_2.add(scrollPaneReportAdvanced);
+		
+		ReportAdvanced = new JTextArea();
+		ReportAdvanced.setText("");
+		scrollPaneReportAdvanced.setViewportView(ReportAdvanced);
 		
 		
 		JLabel lblRelatorio = new JLabel("<html><b>> Report & Statistic ( Relat\u00F3rio & Estat\u00EDstica )</b>");
@@ -214,7 +218,7 @@ public class SimulatorWindows extends JFrame {
 		contentPane.add(aechoice);
 		
 		schoice = new JCheckBoxMenuItem("Supermercado");
-		schoice.setBounds(259, 236, 129, 22);
+		schoice.setBounds(271, 236, 129, 22);
 		contentPane.add(schoice);
 		JLabel lblChooseToBegin = new JLabel("Choose to begin:");
 		lblChooseToBegin.setBounds(160, 244, 101, 14);
@@ -260,6 +264,7 @@ public class SimulatorWindows extends JFrame {
 				ReportAdvanced.setText("");
 				ReportBasic.setText(sm.imprimirResultados());
 				ReportAdvanced.setText(sm.imprimirEstatisticasAvancadas());
+		
 			
 			}
 			if (aechoice.isSelected()){
