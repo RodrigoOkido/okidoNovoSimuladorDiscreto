@@ -1,8 +1,11 @@
 package simulator;
 
+import java.awt.Color;
+
 import ProgramInterfaces.QueueTAD;
 import ProgramInterfaces.SimuladorInterface;
 import ProgramListTADs.QueueLinked;
+import ProgramWindowsInterface.SimulatorWindows;
 
 /**
  * Classe com a lógica da simulacao passo-a-passo. Esta classe gera uma simulação
@@ -163,15 +166,22 @@ public class SimulacaoSupermercado implements SimuladorInterface
                 fila.add(c);
                 if(trace)
                    x1.append("\n"+tempo + ": cliente " + c.getNumero() + " ("+c.getTempoAtendimento()+" min) entra na fila - " + fila.size() + " pessoa(s)");
+				  if(SimulatorWindows.primeiro.getBackground() == Color.BLACK){
+					  SimulatorWindows.primeiro.setBackground(Color.RED);
+					  }
+				  if(SimulatorWindows.segundo.getBackground() == Color.BLACK){
+					  SimulatorWindows.segundo.setBackground(Color.RED);
+					  }
+				  if(SimulatorWindows.terceiro.getBackground() == Color.BLACK){
+					  SimulatorWindows.terceiro.setBackground(Color.RED);
+					  } 
             }
             statComprimentosFila.tamanhoMaximoFila(fila.size());
 
             //verificar se o caixa esta vazio
-            if(caixa.estaVazio())
+            if(caixa.estaVazio() && !fila.isEmpty())
             {
                 //se o caixa esta vazio, atender o primeiro cliente da fila se ele existir
-                if(!fila.isEmpty())
-                {
                     //tirar o cliente do inicio da fila e atender no caixa
                 	statAtendimentoSemEspera.atendimentoSemEspera(caixa.estaVazio(), fila.size());
                     caixa.atenderNovoCliente(fila.removeFromHead());
@@ -184,20 +194,57 @@ public class SimulacaoSupermercado implements SimuladorInterface
                 	statTempoAtendimentoCaixa.adicionarQuadrado(caixa
 							.getClienteAtual().getTempoAtendimento());
                 	x1.append("\n"+tempo + ": cliente " + caixa.getClienteAtual().getNumero() + " chega ao caixa.");
-                }
+                	
+                	
+                	//MUDANÇA NO GRAFICO DA FILA DA INTERFACE
+    					SimulatorWindows.primeiro.setBackground(Color.GREEN);
+                
             }
             else
             {
                 //se o caixa ja esta ocupado, diminuir de um em um o tempo de atendimento ate chegar a zero
-                if(caixa.getClienteAtual().getTempoAtendimento() == 0)
+            	if (!caixa.estaVazio() && caixa.getClienteAtual().getTempoAtendimento() == 0)
                 {
                     if(trace)
                     	x1.append("\n"+tempo + ": cliente " + caixa.getClienteAtual().getNumero() + " deixa o caixa.");
                     caixa.dispensarClienteAtual();
+                    
+                  //MUDANÇA NO GRAFICO DA FILA DA INTERFACE
+                    if (fila.size() < 4){	
+						if(SimulatorWindows.segundo.getBackground() == Color.RED && 
+								SimulatorWindows.terceiro.getBackground() == Color.RED){
+							
+						        SimulatorWindows.primeiro.setBackground(Color.RED);	
+						        SimulatorWindows.segundo.setBackground(Color.RED);
+						        SimulatorWindows.terceiro.setBackground(Color.BLACK);	
+						}
+						
+						if(SimulatorWindows.segundo.getBackground() == Color.RED &&
+								SimulatorWindows.terceiro.getBackground() == Color.BLACK){
+							
+							   SimulatorWindows.primeiro.setBackground(Color.RED);
+					           SimulatorWindows.segundo.setBackground(Color.BLACK);	
+						}
+						
+						if(SimulatorWindows.segundo.getBackground() == Color.BLACK &&
+								SimulatorWindows.terceiro.getBackground() == Color.BLACK){
+							
+							   SimulatorWindows.primeiro.setBackground(Color.BLACK);
+						}
+					 } else
+					      {
+							SimulatorWindows.terceiro.setBackground(Color.RED);
+						    SimulatorWindows.primeiro.setBackground(Color.RED);
+						    SimulatorWindows.segundo.setBackground(Color.RED);				 				 
+					 }
                 }
                 else
                 {
+                	 if (caixa.estaVazio()==false){
+                		 if (caixa.getClienteAtual().getTempoAtendimento() != 0)
+                	 
                     caixa.getClienteAtual().decrementarTempoAtendimento();
+                	 }
                 }
             }
             statTempoFilaVazia.tempoSemFila(fila.size());

@@ -1,10 +1,16 @@
 package simulator;
 
+import java.awt.Color;
+import java.awt.event.KeyEvent;
+import java.io.PrintStream;
+import java.util.Scanner;
+
 import ProgramInterfaces.QueueTAD;
 import ProgramInterfaces.SimuladorInterface;
 import ProgramInterfaces.StackTAD;
 import ProgramListTADs.QueueLinked;
 import ProgramListTADs.StackLinked;
+import ProgramWindowsInterface.SimulatorWindows;
 
 /**
  * Classe com a lógica da simulacao passo-a-passo. Esta classe gera uma simulação
@@ -217,6 +223,7 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 	 */
     public String simular(int min, int max, int qwt, int duration)
     {
+    	
     	StringBuilder x1 = new StringBuilder();
     	setDuracao(duration);
 		ClienteTipo2.setMinMaxTimeFila1(1,3);
@@ -240,12 +247,23 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 				fila.add(c);
 				senha++;
 
-				if (trace)
+				if (trace){
 					x1.append("\n"+tempo + ": cliente " + c.getNumero()
 							+ " com a senha " + senha + " ("
 							+ c.getTempoAtendimento()
 							+ " min) entra na fila - " + fila.size()
 							+ " pessoa(s)");
+				  if(SimulatorWindows.primeiro.getBackground() == Color.BLACK){
+					  SimulatorWindows.primeiro.setBackground(Color.RED);
+					  }
+				  if(SimulatorWindows.segundo.getBackground() == Color.BLACK){
+					  SimulatorWindows.segundo.setBackground(Color.RED);
+					  }
+				  if(SimulatorWindows.terceiro.getBackground() == Color.BLACK){
+					  SimulatorWindows.terceiro.setBackground(Color.RED);
+					  }
+				}
+				   
 			}
 			statComprimentosFila.tamanhoMaximoFila(fila.size());
 
@@ -277,6 +295,9 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 											.getSenhaCliente(
 													guiche1.getClienteAtual())
 									+ " foi chamado no guichê 1 e o cliente se dirige ao caixa.");
+					
+					//MUDANÇA NO GRAFICO DA FILA DA INTERFACE
+					SimulatorWindows.primeiro.setBackground(Color.GREEN);
 				
 				}
 				
@@ -290,7 +311,40 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 						x1.append("\n"+tempo + ": cliente "
 								+ guiche1.getClienteAtual().getNumero()
 								+ " entrega o documento e deixa o guichê 1.");
-					
+						
+						//MUDANÇA NO GRAFICO DA FILA DA INTERFACE
+					 if (fila.size() < 4){	
+						if(SimulatorWindows.segundo.getBackground() == Color.RED && 
+								SimulatorWindows.terceiro.getBackground() == Color.RED){
+							
+						        SimulatorWindows.primeiro.setBackground(Color.RED);	
+						        SimulatorWindows.segundo.setBackground(Color.RED);
+						        SimulatorWindows.terceiro.setBackground(Color.BLACK);	
+						}
+						
+						if(SimulatorWindows.segundo.getBackground() == Color.RED &&
+								SimulatorWindows.terceiro.getBackground() == Color.BLACK){
+							
+							   SimulatorWindows.primeiro.setBackground(Color.RED);
+					           SimulatorWindows.segundo.setBackground(Color.BLACK);	
+						}
+						
+						if(SimulatorWindows.segundo.getBackground() == Color.BLACK &&
+								SimulatorWindows.terceiro.getBackground() == Color.BLACK){
+							
+							   SimulatorWindows.primeiro.setBackground(Color.BLACK);
+						}
+					 } else
+					      {
+							SimulatorWindows.terceiro.setBackground(Color.RED);
+						    SimulatorWindows.primeiro.setBackground(Color.RED);
+						    SimulatorWindows.segundo.setBackground(Color.RED);				 				 
+					 }
+					 
+					 // FIM DAS ALTERAÇÕES DA FILA NA INTERFACE
+					 //CONTINUAÇÃO DA SIMULAÇÃO
+					 
+					 
 						ClienteTipo2 aux = (ClienteTipo2)guiche1.getClienteAtual();
 						ClienteTipo2.setMinMaxTimeFila2(min, max);
 						ClienteTipo2 c2 = new ClienteTipo2 (guiche1.getClienteAtual().getNumero(),guiche1.getClienteAtual().getInstanteChegada(),guiche1.getClienteAtual().getSenhaCliente((ClienteTipo2)guiche1.getClienteAtual()),aux.getDocumento());						
@@ -303,6 +357,19 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 								+ " pessoa(s)");
 						guiche1.dispensarClienteAtual();
 						statComprimentosFila2.tamanhoMaximoFila(fila2.size());
+						
+						
+						//MUDANÇA NOS GRAFICO DA FILA DA INTERFACE
+						  if(SimulatorWindows.primeiroF2.getBackground() == Color.BLACK){
+							  SimulatorWindows.primeiroF2.setBackground(Color.RED);
+							  }
+						  if(SimulatorWindows.segundoF2.getBackground() == Color.BLACK){
+							  SimulatorWindows.segundoF2.setBackground(Color.RED);
+							  }
+						  if(SimulatorWindows.terceiroF2.getBackground() == Color.BLACK){
+							  SimulatorWindows.terceiroF2.setBackground(Color.RED);
+							  }
+
 
 						if (guiche2.estaVazio() && !fila2.isEmpty()) {
 							statAtendimentoSemEspera2.atendimentoSemEspera(guiche2.estaVazio(), fila2.size());
@@ -329,6 +396,9 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 														.getSenhaCliente(
 																guiche2.getClienteAtual())
 												+ " foi chamado no guichê 2 e o cliente se dirige ao caixa.");
+								    
+								    // MUDANÇA NO GRAFICO DA FILA DA INTERFACE
+								      SimulatorWindows.primeiroF2.setBackground(Color.GREEN);
 							}
 						
 						
@@ -343,7 +413,38 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 								+ guiche2.getClienteAtual().getNumero()
 								+ " pegou o documento desejado e deixa o caixa.");
 						guiche2.dispensarClienteAtual();
-					}
+						
+						
+						//MUDANÇA NO GRAFICO DA FILA DA INTERFACE
+						 if (fila2.size() < 4){	
+								if(SimulatorWindows.segundoF2.getBackground() == Color.RED && 
+										SimulatorWindows.terceiroF2.getBackground() == Color.RED){
+									
+								        SimulatorWindows.primeiroF2.setBackground(Color.RED);	
+								        SimulatorWindows.segundoF2.setBackground(Color.RED);
+								        SimulatorWindows.terceiroF2.setBackground(Color.BLACK);	
+								}
+								
+								if(SimulatorWindows.segundoF2.getBackground() == Color.RED &&
+										SimulatorWindows.terceiroF2.getBackground() == Color.BLACK){
+									
+									   SimulatorWindows.primeiroF2.setBackground(Color.RED);
+							           SimulatorWindows.segundoF2.setBackground(Color.BLACK);	
+								}
+								
+								if(SimulatorWindows.segundoF2.getBackground() == Color.BLACK &&
+										SimulatorWindows.terceiroF2.getBackground() == Color.BLACK){
+									
+									   SimulatorWindows.primeiroF2.setBackground(Color.BLACK);
+								}
+							 } else
+							      {
+									SimulatorWindows.terceiroF2.setBackground(Color.RED);
+								    SimulatorWindows.primeiroF2.setBackground(Color.RED);
+								    SimulatorWindows.segundoF2.setBackground(Color.RED);				 				 
+							 }
+					
+				}
 				
 
 				  
@@ -367,12 +468,13 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 			statTempoFilaVazia1.tempoSemFila(fila.size());
 			statComprimentosFila2.adicionar(fila2.size());
 			statTempoFilaVazia2.tempoSemFila(fila2.size());
-		}
-		x1.append ("\n----------------------------------------------------------------------------------------------------------------------------");
-		
-		return x1.toString();
-	}
 
+		} 
+		x1.append ("\n----------------------------------------------------------------------------------------------------------------------------");
+        return x1.toString();
+    }
+
+    
     
     /**
      * Método responsável por limpar toda a simulação corrente e gerar uma nova
