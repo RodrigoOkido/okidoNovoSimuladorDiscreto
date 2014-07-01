@@ -39,6 +39,17 @@ public interface SimuladorInterface
 	public String simularStepbyStep(int min, int max, int espF, int dur);
      */
 	
+	
+	/**
+	 * Método capaz de calcular a porcentagem de x, de um total y.
+	 * 
+	 * @param x recebe um double x qualquer, deve ser menor ou igual a y
+	 * @param y recebe um double y, que representará o total
+	 * @return retorna a porcentagem que representa x em relação ao total y
+	 */
+	public double porcentagem (double x, double y);
+	
+	
 	/**
 	 * Método responsável por limpar e zerar toda a simulação corrente. 
 	 */

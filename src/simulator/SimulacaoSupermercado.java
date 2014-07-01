@@ -255,6 +255,21 @@ public class SimulacaoSupermercado implements SimuladorInterface
     }
     
     
+	/**
+	 * Método capaz de calcular a porcentagem de x, de um total y.
+	 * 
+	 * @param x recebe um double x qualquer, deve ser menor ou igual a y
+	 * @param y recebe um double y, que representará o total
+	 * @return retorna a porcentagem que representa x em relação ao total y
+	 */
+	public double porcentagem (double x, double y){
+		if (x>y){
+			return 0;
+		}
+		return (x/y)*100;
+	}
+    
+    
     /**
      * Método responsável por limpar toda a simulação corrente e gerar uma nova
      * simulação.
@@ -306,8 +321,8 @@ public class SimulacaoSupermercado implements SimuladorInterface
         +"\nTempo de atendimento mínimo:" + Cliente.tempoMinAtendimento
         +"\nTempo de atendimento máximo:" + Cliente.tempoMaxAtendimento
 		+"\nTempo médio de atendimento no caixa 1 : "
-				+ statTempoAtendimentoCaixa.getMedia()
-        +"\nCliente atendidos:" + caixa.getNumeroAtendidos()
+				+ statTempoAtendimentoCaixa.getMedia() +"  ( "+ porcentagem(statTempoAtendimentoCaixa.getMedia() , statTempoAtendimentoCaixa.getValor())+ "% )"
+        +"\nCliente atendidos:" + caixa.getNumeroAtendidos() +" ( "+ porcentagem(caixa.getNumeroAtendidos() , geradorClientes.getQuantidadeGerada())+ "% )"
         +"\nCliente ainda no caixa:" + (caixa.getClienteAtual() != null)
 		+"\n---------------------------------------------------------------------------------------------";
         return x;

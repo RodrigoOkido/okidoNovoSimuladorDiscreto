@@ -34,6 +34,12 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 	
 	
 	/**
+	 * Atributo para calcular a porcentagem qualquer;
+	 */
+	private static double porcentagem1,porcentagem2;
+	
+	
+	/**
 	 * Atributo que define a probabilidade de chegada dos clientes
 	 * dentro da simulação.
 	 */
@@ -473,7 +479,21 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		x1.append ("\n----------------------------------------------------------------------------------------------------------------------------");
         return x1.toString();
     }
-
+	
+	
+	/**
+	 * Método capaz de calcular a porcentagem de x, de um total y.
+	 * 
+	 * @param x recebe um double x qualquer, deve ser menor ou igual a y
+	 * @param y recebe um double y, que representará o total
+	 * @return retorna a porcentagem que representa x em relação ao total y
+	 */
+	public double porcentagem (double x, double y){
+		if (x>y){
+			return 0;
+		}
+		return (x/y)*100;
+	}
     
     
     /**
@@ -510,6 +530,8 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 	 * @return retorna um relatório básico da simulação
 	 */
 	public String imprimirResultados() {
+		
+		
 		String x = "##### Resultados da Simulação da Auto-Escola #####"
 		+"\n-----------------------------------------------------------------------------------------"
 		+"\n******* Informações Básicas: *******"
@@ -544,9 +566,9 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		+"\nTempo de atendimento máximo no ghichê 1 : "
 				+ ClienteTipo2.tempoMaxAtendimento
 		+"\nTempo médio de atendimento no guichê 1 : "
-				+ statTempoAtendimentoCaixa.getMedia()
+				+ statTempoAtendimentoCaixa.getMedia()+" ( "+ porcentagem(statTempoAtendimentoCaixa.getMedia() , statTempoAtendimentoCaixa.getValor())+ "% )"
 		+("\nNúmero de clientes atendidos no guichê 1 : "
-				+ guiche1.getNumeroAtendidos())
+				+ guiche1.getNumeroAtendidos() +" ( "+ porcentagem(guiche1.getNumeroAtendidos(),geradorClientes.getQuantidadeGerada()) + "% )")
 		+("\nCliente ainda no guiche 1 : "
 				+ (guiche1.getClienteAtual() != null)
 
@@ -573,15 +595,16 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		+("\nTempo de atendimento máximo no guichê 2 : "
 				+ ClienteTipo2.tempoMaxAtendimento2)
 		+("\nTempo médio de atendimento no guichê 2 : "
-				+ statTempoAtendimentoCaixa2.getMedia())
+				+ statTempoAtendimentoCaixa2.getMedia() +" ( "+ porcentagem(statTempoAtendimentoCaixa2.getMedia() , statTempoAtendimentoCaixa2.getValor())+ "% )")
 		+("\nDocumentos ainda empilhados : "+pilhaDocumentos.size())
 		+("\nNúmero de clientes atendidos no guichê 2 : "
-				+ guiche2.getNumeroAtendidos())
+				+ guiche2.getNumeroAtendidos() +" ( "+ porcentagem(guiche2.getNumeroAtendidos(),geradorClientes.getQuantidadeGerada()) + "% )")
 		+("\nCliente ainda no guiche 2 : " 
 				+ (guiche2.getClienteAtual() != null)))
 		+"\n---------------------------------------------------------------------------------------------";
 		return x;
 	}
+	
 	
         @Override
         /**

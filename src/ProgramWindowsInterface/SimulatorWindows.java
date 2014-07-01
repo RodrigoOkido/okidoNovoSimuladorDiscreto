@@ -69,23 +69,72 @@ import java.awt.Button;
  * @author Rodrigo Okido
  * @version 1.0
  */
-public class SimulatorWindows extends JFrame {
-
+public class SimulatorWindows extends JFrame
+{
+    
+	/**
+	 * Painel maior da Janela principal do programa.
+	 */
 	private JPanel contentPane;
+	
+	
+	/**
+	 * Painel do cabeçalho da interface. 
+	 */
 	private final JPanel Header = new JPanel();
+	
+	
+	/**
+	 * Painel das Estatísticas Avançadas da interface
+	 */
 	private final JPanel AdvPanel = new JPanel();
+	
+	
+	/**
+	 * Ação da JButton do programa.
+	 */
 	private final Action action = new SwingAction();
 	
+	
+	/**
+	 * Atributos para dar legendas, erros e qualquer informação ao usuário na tela.
+	 */
     public static JLabel lblNoSimulationStarted ,errorOrMessagePopup ,Message,atendente1,atendente2, label_1, QueueNumber1,
     QueueNumber2,QueueNumber3;
 
+    
+    /**
+     * Caixa de escolha para a simulação de uma Auto-Escola.
+     */
     private JCheckBoxMenuItem aechoice;
+    
+    
+    /**
+     * Caixa de escolha para a simulação de um Supermercado.
+     */
     private JCheckBoxMenuItem schoice;
     
+    
+    /**
+     * Áreas onde serão exibidos os resultados da simulação gerada. 
+     * ReportBasic e ReportAdvanced exibirá as informações básicas e 
+     * avançadas respectivamente da simulação, e a SimulationPage todo
+     * o progresso e eventos ocorridos nela.
+     */
     public static JTextArea ReportBasic,ReportAdvanced, SimulationPage ;
     
+    
+    /**
+     * Botões onde indicam as filas, e o botão principal que faz a execução do programa.
+     */
     public static JButton primeiro,segundo,terceiro,primeiroF2,segundoF2,terceiroF2, startSimulationButton ;
     
+    
+    /**
+     * Informações necessárias para iniciar a execução do programa. Possui um 
+     * tamanho mínimo e máximo de atendimento, um Tempo de espera na fila e 
+     * a duração que ocorrerá a simulação desejada.
+     */
     private static int min, max, fila,duration;
     
 
@@ -162,12 +211,12 @@ public class SimulatorWindows extends JFrame {
 	
 
 	/**
-	 * Create the frame.
+	 * Cria todo a Interface do programa.
 	 */
 	public SimulatorWindows() {
 		// CRIAÇÃO DE TODA A INTERFACE
 		
-		setTitle("OkidoDiscreteSimulator 1.0 build 270614 Beta");
+		setTitle("OkidoDiscreteSimulator 1.0 build 010714 RC");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 720);
 		
@@ -366,15 +415,15 @@ public class SimulatorWindows extends JFrame {
 		contentPane.add(startSimulationButton);
 		
 		aechoice = new JCheckBoxMenuItem("Auto-Escola");
-		aechoice.setBounds(410, 236, 129, 22);
+		aechoice.setBounds(525, 236, 129, 22);
 		contentPane.add(aechoice);
 		
 		schoice = new JCheckBoxMenuItem("Supermercado");
-		schoice.setBounds(271, 236, 129, 22);
+		schoice.setBounds(382, 236, 129, 22);
 		contentPane.add(schoice);
 		
 		JLabel lblChooseToBegin = new JLabel("Choose to begin:");
-		lblChooseToBegin.setBounds(160, 244, 101, 14);
+		lblChooseToBegin.setBounds(271, 244, 101, 14);
 		contentPane.add(lblChooseToBegin);
 		
 		errorOrMessagePopup = new JLabel("");
@@ -387,15 +436,27 @@ public class SimulatorWindows extends JFrame {
 	}
 	
 	
-	
+	/**
+	 * Classe interna para execução das ações do programa. Todo e quaquer clique
+	 * feito pelo usuário, a resposta vem desta classe.
+	 */
 	private class SwingAction extends AbstractAction {
 	
-	
+	    
+		/**
+		 * Criação de uma SwingAction, isto é, gera uma resposta a ação do usuário.
+		 */
 		public SwingAction() {
 			putValue(NAME, "Begin Simulation");
 			putValue(SHORT_DESCRIPTION, "Begin the simulation according with the establishment chosen by you");
 		}
 		
+		
+		/**
+		 * Método responsável pela execução da ação pedida pelo usuário.
+		 * 
+		 * @param Recebe uma ActionEvent por parâmetro
+		 */
 		public void actionPerformed(ActionEvent e) {
 			
 			if ((schoice.isSelected() && (aechoice.isSelected()))){
@@ -443,12 +504,18 @@ public class SimulatorWindows extends JFrame {
 				primeiro.setVisible(true);
 				segundo.setVisible(true);
 				terceiro.setVisible(true);
+				atendente2.setVisible(false);
+				primeiroF2.setVisible(false);
+				segundoF2.setVisible(false);
+				terceiroF2.setVisible(false);
 				QueueNumber1.setVisible(true);
 				QueueNumber2.setVisible(true);
 				QueueNumber3.setVisible(true);
 				label_1.setVisible(true);
 				//
 				//
+				
+				
 				SimulationPage.setText("");
 				ReportBasic.setText("");
 				ReportAdvanced.setText("");
