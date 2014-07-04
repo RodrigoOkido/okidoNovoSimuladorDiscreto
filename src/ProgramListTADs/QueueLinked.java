@@ -15,32 +15,33 @@ import ProgramInterfaces.QueueTAD;
 public class QueueLinked<E> implements QueueTAD<E>
 {
 	
-	/*
+	/**
 	 * Classe interna que corresponde a criação dos nodos da fila. Cada nodo pode guardar
 	 * um elemento de algum tipo genérico dentro dele, e referenciar o próximo elemento dele e 
 	 * o anterior.
 	 */
-    private static final class Node<E> {
+    private static final class Node<E> 
+    {
     	
-    	/*
+    	 /**
     	 * Atributo que guarda um elemento de um tipo qualquer dentro do nodo.
     	 */
         public E element;
         
         
-        /*
+        /**
          * Atributo que referencia o próximo nodo de algum elemento.
          */
         public Node<E> next;
         
         
-        /*
+        /**
          * Atributo que referencia o nodo anterior de algum elemento. 
          */
         public Node<E> prev;
         
         
-        /*
+        /**
          * Construtor para a criação do Nodo. Recebe um elemento por parâmetro tendo 
          * o próximo e o anterior ao nodo criado inicializados com null.
          * 
@@ -56,27 +57,27 @@ public class QueueLinked<E> implements QueueTAD<E>
     }
 
     
-    /*
+    /**
      * Atributo que corresponde ao Nodo inicial de uma lista qualquer. Por ser uma fila, 
      * o primeiro elemento que entrar na fila, deve ser o primeiro elemento a sair.  
      */
     private Node<E> head;
     
     
-    /*
+    /**
      * Atributo que corresponde ao Nodo Final de uma lista qualquer. Por ser uma fila, 
      * o último elemento que entrar na fila, deve ser o último elemento a sair.
      */
     private Node<E> tail;
     
     
-    /*
+    /**
      * Atributo para controlar o tamanho atual da fila.
      */
     private int count;
     
     
-    /*
+    /**
      * Construtor de uma fila. Iniciada com todos os seus atributos vazios, ou seja, "head" 
      * e "tail" com null, e count com zero elementos.
      */
@@ -88,7 +89,7 @@ public class QueueLinked<E> implements QueueTAD<E>
     }
     
     
-    /*
+    /**
      * Verifica o tamanho atual da fila.
      * 
      * @return retorna o tamanho atual da fila
@@ -99,7 +100,7 @@ public class QueueLinked<E> implements QueueTAD<E>
     }
 
     
-    /*
+    /**
      * Verifica se a fila está vazia ou não.
      * 
      * @return retorna "true" se a lista se encontra vazia, e "false" caso contrário
@@ -110,7 +111,7 @@ public class QueueLinked<E> implements QueueTAD<E>
     }
     
     
-    /*
+    /**
      * Método responsável por limpar toda a fila. Seus elementos serão todos excluídos 
      * e count zerado.
      */
@@ -122,7 +123,7 @@ public class QueueLinked<E> implements QueueTAD<E>
     }
 
     
-    /*
+    /**
      * Retorna o elemento que se encontra em primeiro na fila.
      * 
      * @throws joga uma EmptyQueueException caso a fila estiver vazia
@@ -136,7 +137,7 @@ public class QueueLinked<E> implements QueueTAD<E>
     }
   
     
-  /*
+  /**
    * Adiciona um elemento de um tipo qualquer dentro de uma fila.
    * 
    * @param element Adiciona na fila por parâmetro um elemento de um tipo genérico,
@@ -157,7 +158,7 @@ public class QueueLinked<E> implements QueueTAD<E>
     }
     
     
-    /*
+    /**
      * Remove da lista a partir da "Head", isto é, o primeiro elemento ao ser adicionado,
      * ele será o primeiro a ser removido. 
      * 
@@ -179,7 +180,7 @@ public class QueueLinked<E> implements QueueTAD<E>
     }
 
     
-    /*
+    /**
      * Remove da lista a partir da "Tail", isto é, o último elemento ao ser adicionado,
      * ele será o primeiro a ser removido. Tem um funcionamento similar ao uma pilha neste caso,
      * por isso, deve ser usado apenas caso necessário.  
