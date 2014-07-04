@@ -295,14 +295,14 @@ public class SimulatorWindows extends JFrame
 		//
 		//
 		
-		atendente1 = new JLabel("Atendente 1");
+		atendente1 = new JLabel("Atendente 1 (Fila 1)");
 		atendente1.setVisible(false);
-		atendente1.setBounds(639, 48, 71, 14);
+		atendente1.setBounds(595, 48, 127, 14);
 		Header.add(atendente1);
 		
-		atendente2 = new JLabel("Atendente 2");
+		atendente2 = new JLabel("Atendente 2 (Fila 2)");
 		atendente2.setVisible(false);
-		atendente2.setBounds(742, 48, 71, 14);
+		atendente2.setBounds(721, 48, 122, 14);
 		Header.add(atendente2);
 		
 		JLabel lblSimulationStatus = new JLabel("SIMULATION STATUS");
