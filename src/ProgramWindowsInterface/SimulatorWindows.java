@@ -216,7 +216,7 @@ public class SimulatorWindows extends JFrame
 	public SimulatorWindows() {
 		// CRIAÇÃO DE TODA A INTERFACE
 		
-		setTitle("OkidoDiscreteSimulator 1.0 build 010714 RC");
+		setTitle("OkidoDiscreteSimulator 1.0 build 070714 Final");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 720);
 		
