@@ -528,9 +528,9 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		
 		String x = "##### Resultados da Simulação da Auto-Escola #####"
 		+"\n-----------------------------------------------------------------------------------------"
-		+"\n******* Informações Básicas: *******"
-		+"\nDuração:" + duracao
-		+"\nProbabilidade de chegada de clientes:"
+		+"\n******* Informações Básicas *******"
+		+"\nDuração : " + duracao
+		+"\nProbabilidade de chegada de clientes : "
 				+ probabilidadeChegada
 		+"\nNúmero total de clientes com \natendimento completo (guichê 1 + guichê 2) : "
 				+ guiche2.getNumeroAtendidos()
@@ -543,13 +543,13 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 		+"\n\n******* Estatísticas Fila 1 *******"
 		+"\nTempo médio de espera na fila 1 : "
 				+ statTemposEsperaFila.getMedia()
-		+"\nTamanho máximo da fila 1: " +	
+		+"\nTamanho máximo da fila 1 : " +	
 				statComprimentosFila.tamanhoMaximoFila(fila.size())
 		+"\nComprimento médio da fila 1 : "
 				+ statComprimentosFila.getMedia()
-		+"\nAtendimentos que ocorreram sem espera: " 
+		+"\nAtendimentos que ocorreram sem espera : " 
 				+ statAtendimentoSemEspera1.atendimentoSemEspera(guiche1.estaVazio(), fila.size())
-		+"\nTempo total em que a fila 1 ficou vazia: "
+		+"\nTempo total em que a fila 1 ficou vazia : "
 				+ statTempoFilaVazia1.getContagem() + " segundos"
 		+"\nClientes ainda na fila 1 : " + fila.size()
 
@@ -576,9 +576,9 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 				statComprimentosFila2.tamanhoMaximoFila(fila2.size()))
 		+("\nComprimento médio da fila 2 : "
 				+ statComprimentosFila2.getMedia())
-		+("\nAtendimentos que ocorreram sem espera: " 
+		+("\nAtendimentos que ocorreram sem espera : " 
 				+ statAtendimentoSemEspera2.atendimentoSemEspera(guiche2.estaVazio(), fila2.size()))
-		+("\nTempo total em que a fila 2 ficou vazia: "
+		+("\nTempo total em que a fila 2 ficou vazia : "
 				+ statTempoFilaVazia2.getContagem() + " segundos")
 		+("\nClientes ainda na fila 2 : " + fila2.size())
 

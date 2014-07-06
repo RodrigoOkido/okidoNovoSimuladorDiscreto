@@ -298,32 +298,32 @@ public class SimulacaoSupermercado implements SimuladorInterface
     {
         String x = "##### Resultados da Simulação do Supermercado #####"
     	+"\n---------------------------------------------------------------------------------------------"
-        +"\n******* Informações Básicas: *******"
-        +"\nDuração:" + duracao
-        +"\nProbabilidade de chegada de clientes:" + probabilidadeChegada
+        +"\n******* Informações Básicas *******"
+        +"\nDuração : " + duracao
+        +"\nProbabilidade de chegada de clientes : " + probabilidadeChegada
 
-        +"\nTotal de clientes gerados:" + geradorClientes.getQuantidadeGerada()
+        +"\nTotal de clientes gerados : " + geradorClientes.getQuantidadeGerada()
 
         
         +"\n\n******* Estatísticas Fila 1 *******"
-        +"\nTempo médio de espera:" + statTemposEsperaFila.getMedia()
+        +"\nTempo médio de espera : " + statTemposEsperaFila.getMedia()
 		+"\nTamanho máximo da fila : " +	
 				statComprimentosFila.tamanhoMaximoFila(fila.size())
-       +"\nComprimento médio da fila :" + statComprimentosFila.getMedia()
-      +"\nAtendimentos que ocorreram sem espera: " 
+       +"\nComprimento médio da fila : " + statComprimentosFila.getMedia()
+      +"\nAtendimentos que ocorreram sem espera : " 
 				+ statAtendimentoSemEspera.atendimentoSemEspera(caixa.estaVazio(), fila.size())
-		+"\nTempo total em que a fila 1 ficou vazia: "
+		+"\nTempo total em que a fila 1 ficou vazia : "
 				+ statTempoFilaVazia.getContagem() + " segundos"
       +"\nClientes ainda na fila 1 : " + fila.size()
         
         
 		+"\n\n******* Estatísticas Caixa 1 *******"
-        +"\nTempo de atendimento mínimo:" + Cliente.tempoMinAtendimento
-        +"\nTempo de atendimento máximo:" + Cliente.tempoMaxAtendimento
+        +"\nTempo de atendimento mínimo : " + Cliente.tempoMinAtendimento
+        +"\nTempo de atendimento máximo : " + Cliente.tempoMaxAtendimento
 		+"\nTempo médio de atendimento no caixa 1 : "
 				+ statTempoAtendimentoCaixa.getMedia() +"  ( "+ porcentagem(statTempoAtendimentoCaixa.getMedia() , statTempoAtendimentoCaixa.getValor())+ "% )"
-        +"\nCliente atendidos:" + caixa.getNumeroAtendidos() +" ( "+ porcentagem(caixa.getNumeroAtendidos() , geradorClientes.getQuantidadeGerada())+ "% )"
-        +"\nCliente ainda no caixa:" + (caixa.getClienteAtual() != null)
+        +"\nCliente atendidos : " + caixa.getNumeroAtendidos() +" ( "+ porcentagem(caixa.getNumeroAtendidos() , geradorClientes.getQuantidadeGerada())+ "% )"
+        +"\nCliente ainda no caixa : " + (caixa.getClienteAtual() != null)
 		+"\n---------------------------------------------------------------------------------------------";
         return x;
     }

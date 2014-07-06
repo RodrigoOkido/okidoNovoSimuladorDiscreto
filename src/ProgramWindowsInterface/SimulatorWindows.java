@@ -430,8 +430,10 @@ public class SimulatorWindows extends JFrame
 		errorOrMessagePopup.setBounds(292, 269, 265, 23);
 		contentPane.add(errorOrMessagePopup);
 		
-		Message = new JLabel("");
-		Message.setBounds(664, 293, 171, 14);
+		Message = new JLabel("Read \"LEIAME\" to see how make a different Simulation (Optional)");
+		Message.setFont(new Font("Tahoma", Font.BOLD, 11));
+		Message.setForeground(new Color(255, 51, 0));
+		Message.setBounds(302, 293, 442, 14);
 		contentPane.add(Message);
 	}
 	
@@ -471,6 +473,7 @@ public class SimulatorWindows extends JFrame
 				
 				//HIDING INTERFACE SIMULATION STATUS
 				lblNoSimulationStarted.setText("NO SIMULATION STARTED YET");
+				Message.setText("");
 				atendente1.setVisible(false);
 				atendente2.setVisible(false);
 				primeiro.setVisible(false);
@@ -495,7 +498,7 @@ public class SimulatorWindows extends JFrame
 			else{
 			
 			if (schoice.isSelected()){
-				errorOrMessagePopup.setText("<html><b><font color = \"green\">SIMULATION FINISHED!</font></b>");
+				
 				SimuladorInterface sm = new SimulacaoSupermercado(true);
 				
 				//SHOWING INTERFACE SIMULATION STATUS
@@ -515,17 +518,18 @@ public class SimulatorWindows extends JFrame
 				//
 				//
 				
-				
+				Message.setText("");
 				SimulationPage.setText("");
 				ReportBasic.setText("");
 				ReportAdvanced.setText("");
 				SimulationPage.setText(sm.simular(min, max, fila, duration));
 				ReportBasic.setText(sm.imprimirResultados());
 				ReportAdvanced.setText(sm.imprimirEstatisticasAvancadas());
+				errorOrMessagePopup.setText("<html><b><font color = \"green\">SIMULATION FINISHED!</font></b>");
 			}
 			
 			if (aechoice.isSelected()){
-				errorOrMessagePopup.setText("<html><b><font color = \"green\">SIMULATION FINISHED!</font></b>");
+
 				SimuladorInterface sm = new SimulacaoAutoEscola(true);
 				
 				//SHOWING INTERFACE SIMULATION STATUS
@@ -546,13 +550,15 @@ public class SimulatorWindows extends JFrame
 				//
 				//
 				
-				sm.simular(min, max, fila, duration);
+		
+				Message.setText("");
 				SimulationPage.setText("");
 				ReportBasic.setText("");
 				ReportAdvanced.setText("");
 				SimulationPage.setText(sm.simular(min, max, fila, duration));
 				ReportBasic.setText(sm.imprimirResultados());
 				ReportAdvanced.setText(sm.imprimirEstatisticasAvancadas());
+				errorOrMessagePopup.setText("<html><b><font color = \"green\">SIMULATION FINISHED!</font></b>");
 			}
 			}
 		}
