@@ -18,6 +18,8 @@ public interface QueueTAD<E>
 	 * Adiciona um elemento dentro de uma fila. O elemento a ser adicionado, por 
 	 * ser de um tipo genérico, pode ser de qualquer tipo. Tendo liberdade para definir
 	 * seu tipo. 
+	 * 
+	 * @param element Recebe um elemento de tipo qualquer por parâmetro para ser adicionado na fila
 	 */
     void add(E element);
     
@@ -65,6 +67,8 @@ public interface QueueTAD<E>
     
     /**
      * Método responsável por retornar o primeiro elemento da fila.
+     * 
+     * @return retorna o primeiro elemento da fila
      */
     E element();
 }

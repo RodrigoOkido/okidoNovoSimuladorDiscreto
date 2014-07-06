@@ -34,12 +34,6 @@ public class SimulacaoAutoEscola implements SimuladorInterface
 	
 	
 	/**
-	 * Atributo para calcular a porcentagem qualquer;
-	 */
-	private static double porcentagem1,porcentagem2;
-	
-	
-	/**
 	 * Atributo que define a probabilidade de chegada dos clientes
 	 * dentro da simulação.
 	 */

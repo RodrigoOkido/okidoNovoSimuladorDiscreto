@@ -112,7 +112,7 @@ public class StackLinked <E> implements StackTAD<E>
 	/**
 	 * Método que remove o elemento do topo da pilha. 
 	 * 
-	 * @throws joga uma EmptyStackException se a pilha estiver vazia
+	 * @throws EmptyStackException se a pilha estiver vazia
 	 * @return retorna o elemento removido
 	 */
 	public E pop() {
@@ -143,7 +143,7 @@ public class StackLinked <E> implements StackTAD<E>
 	/**
 	 * Verifica o elemento que se encontra no topo da pilha.
 	 * 
-	 * @throws joga uma EmptyStackException se a pilha estiver vazia
+	 * @throws EmptyStackException se a pilha estiver vazia
 	 * @return retorna o elemento que se encontra no topo da pilha
 	 */
 	public E top() {

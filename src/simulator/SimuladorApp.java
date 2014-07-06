@@ -10,7 +10,7 @@ import org.w3c.dom.Element;
 import java.io.File;
 
 /**
- * Classe responsável pela execução do programa. 
+ * Classe responsável pela execução do programa. Executa o programa a partir do Console.
  * 
  * @author Rodrigo Okido
  * @version 1.0

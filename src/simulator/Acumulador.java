@@ -174,6 +174,7 @@ public class Acumulador
 	 * tempo é calculado em segundos.
 	 * 
 	 * @param tam recebe o tamanho da fila por parâmetro e compara seu tamanho com 1
+	 * @return retorna o tempo que ficou sem fila
 	 */
 	public int tempoSemFila (int tam){
 		if (tam == 0){

@@ -67,6 +67,10 @@ public class ClienteTipo2 extends Cliente
 	 */
 	public static int tempoMaxAtendimento2 = 0;
 	
+	
+	/**
+	 * Gerador de números aleatórios utilizando a classe Random.
+	 */
 	private static final Random timeGenerator = new Random();
 
 	

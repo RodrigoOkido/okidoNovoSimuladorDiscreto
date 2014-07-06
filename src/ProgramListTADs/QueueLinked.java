@@ -126,7 +126,7 @@ public class QueueLinked<E> implements QueueTAD<E>
     /**
      * Retorna o elemento que se encontra em primeiro na fila.
      * 
-     * @throws joga uma EmptyQueueException caso a fila estiver vazia
+     * @throws EmptyQueueException caso a fila estiver vazia
      * @return retorna o primeiro elemento da fila
      */
     public E element()

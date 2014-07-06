@@ -24,6 +24,8 @@ public interface StackTAD <E> {
 	       
 	       /**
 	        * Método responsável por remover o elemento do topo da pilha. 
+	        * 
+	        * @return retorna o elemento removido da pilha
 	        */
 	       public E pop();
 	       
