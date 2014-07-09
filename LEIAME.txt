@@ -1,0 +1,43 @@
+Algoritmo e Programação II - Rodrigo Yukio Okido 
+Artigo final do TF.
+
+Arquivos inclusos:
+
+- Artigo (Pt1 + pt2 Trabalho Final)
+- Diagrama (contido também no artigo, apenas dado para melhor visualização 
+devido ao tamanho de sua resolução).
+
+** Diagrama atualizado na pt2.
+- Codigo fonte (Indicado dentro do artigo)
+
+
+
+***** PROBLEMAS *****
+
+O programa não é capaz de executar em passo a passo. As funções do programa, apesar de
+ter código e capacidade de executar, não foi possível fazer alguma ação que parasse o
+loop para depois continuar sobre o principal método do programa. Muitas dificuldades 
+foram encontradas e não foi possivel resolver esta função.  
+
+
+***** Fazer mudanças nos dados da simulação *****
+
+Através do programa NotePad++, arraste o xml "okidoSimulationFile" localizado na pasta 
+do programa para dentro do NotePad++ e altere os valores que estão dispostos entre 
+os <>dado</>. ("dado" é onde deverá ser mexido), e em seguida salve e execute novamente
+o programa. Caso você não possua o programa, ele vem junto com o download do programa. 
+O arquivo está compactado em um .rar chamado de "notepad++".
+
+
+EXEMPLOS:
+
+** Simulação de um Supermercado
+Duração: A sua escolha
+Atendimento Mínimo: 5
+Atendimento Máximo: 10
+
+** Simulação de uma Auto-Escola
+Duração: A sua escolha
+Atendimento Mínimo: 2
+Atendimento Máximo: 15
+
