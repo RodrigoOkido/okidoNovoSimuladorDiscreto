@@ -2,8 +2,10 @@
 
 <Simulation>
 
-<tempoAtendimentoMinimo>2</tempoAtendimentoMinimo>
-<tempoAtendimentoMaximo>15</tempoAtendimentoMaximo>
+<tempoAtendimentoMinimoS>5</tempoAtendimentoMinimoS>
+<tempoAtendimentoMaximoS>10</tempoAtendimentoMaximoS>
+<tempoAtendimentoMinimoAE>2</tempoAtendimentoMinimoAE>
+<tempoAtendimentoMaximoAE>15</tempoAtendimentoMaximoAE>
 <tempoEsperaFila>0</tempoEsperaFila>
 <duracao>400</duracao>
 

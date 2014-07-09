@@ -135,7 +135,7 @@ public class SimulatorWindows extends JFrame
      * tamanho mínimo e máximo de atendimento, um Tempo de espera na fila e 
      * a duração que ocorrerá a simulação desejada.
      */
-    private static int min, max, fila,duration;
+    private static int minS, maxS, minAE,maxAE, fila,duration;
     
 
 	/**
@@ -175,11 +175,17 @@ public class SimulatorWindows extends JFrame
 						if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
 							Element eElement = (Element) nNode;
-							min = Integer.parseInt(eElement
-									.getElementsByTagName("tempoAtendimentoMinimo")
+							minS = Integer.parseInt(eElement
+									.getElementsByTagName("tempoAtendimentoMinimoS")
 									.item(0).getTextContent());
-							max = Integer.parseInt(eElement
-									.getElementsByTagName("tempoAtendimentoMaximo")
+							maxS = Integer.parseInt(eElement
+									.getElementsByTagName("tempoAtendimentoMaximoS")
+									.item(0).getTextContent());
+							minAE = Integer.parseInt(eElement
+									.getElementsByTagName("tempoAtendimentoMinimoAE")
+									.item(0).getTextContent());
+							maxAE = Integer.parseInt(eElement
+									.getElementsByTagName("tempoAtendimentoMaximoAE")
 									.item(0).getTextContent());
 							fila = Integer.parseInt(eElement
 									.getElementsByTagName("tempoEsperaFila").item(0)
@@ -189,7 +195,7 @@ public class SimulatorWindows extends JFrame
 									.getTextContent());
 
 							SimuladorInterface sm = new SimulacaoSupermercado(true);
-							sm.simular(min, max, fila, duration);
+							sm.simular(minS, maxS, fila, duration);
 						
 						}
 					}
@@ -522,7 +528,7 @@ public class SimulatorWindows extends JFrame
 				SimulationPage.setText("");
 				ReportBasic.setText("");
 				ReportAdvanced.setText("");
-				SimulationPage.setText(sm.simular(min, max, fila, duration));
+				SimulationPage.setText(sm.simular(minS, maxS, fila, duration));
 				ReportBasic.setText(sm.imprimirResultados());
 				ReportAdvanced.setText(sm.imprimirEstatisticasAvancadas());
 				errorOrMessagePopup.setText("<html><b><font color = \"green\">SIMULATION FINISHED!</font></b>");
@@ -555,7 +561,7 @@ public class SimulatorWindows extends JFrame
 				SimulationPage.setText("");
 				ReportBasic.setText("");
 				ReportAdvanced.setText("");
-				SimulationPage.setText(sm.simular(min, max, fila, duration));
+				SimulationPage.setText(sm.simular(minAE, maxAE, fila, duration));
 				ReportBasic.setText(sm.imprimirResultados());
 				ReportAdvanced.setText(sm.imprimirEstatisticasAvancadas());
 				errorOrMessagePopup.setText("<html><b><font color = \"green\">SIMULATION FINISHED!</font></b>");
